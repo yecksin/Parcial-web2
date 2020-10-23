@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class RegisterComponent implements OnInit {
 
   userForm = new FormGroup({
-    email: new FormControl('pabhoz@gmail.com', Validators.required),
+    email: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
@@ -20,24 +20,30 @@ export class RegisterComponent implements OnInit {
     favNumber: new FormControl(''),
   });
 
-  constructor(private router:Router, private authService:AuthService) { }
+  constructor(
+    private router:Router,
+    private _auth:AuthService
+    ) { }
 
   ngOnInit(): void {
   }
 
-  doRegister(e) {
-    e.preventDefault();
+  onRegister() {
+    console.log(this.userForm.value);
+    const {email,password} = this.userForm.value;
+    this._auth.register(email,password);
+    // e.preventDefault();
 
-    const user: UserI = {
-      email: "pabhoz@usbcali.edu.co",
-      username: "pabhoz",
-      favNumber: 4,
-      lname: "Bejarano",
-      password: "suanfanzon",
-      name: "Pablo",
-    };
+    // const user: UserI = {
+    //   email: "pabhoz@usbcali.edu.co",
+    //   username: "pabhoz",
+    //   favNumber: 4,
+    //   lname: "Bejarano",
+    //   password: "suanfanzon",
+    //   name: "Pablo",
+    // };
 
-    console.log(this.userForm);
+    // console.log(this.userForm);
 
     //this.authService.login(user);
 
