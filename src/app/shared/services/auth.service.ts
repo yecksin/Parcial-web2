@@ -6,6 +6,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { User } from 'firebase/app';
+import * as bulmaToast from "bulma-toast";
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +18,16 @@ export class AuthService {
   constructor(
     public _afAuth:AngularFireAuth,
     private router: Router
+  
   ) { }
-
+ tostada(){
+   
+  bulmaToast.toast({ message: "Hello There" ,
+  position: "top-center",
+  type: "is-success"
+});
+  
+ }
   async login(email:string,password:string){
     
     try {
@@ -27,6 +36,9 @@ export class AuthService {
       return result
     } catch (error) {
       console.log(error);
+      //"auth/user-not-found" 
+      // "auth/wrong-password"
+      //"auth/invalid-email"
     }
   }
 
