@@ -12,15 +12,18 @@ import { User } from 'firebase/app';
 export class AuthService {
   public user:User
 
+  logueado = false;
 
   constructor(
     public _afAuth:AngularFireAuth,
+    private router: Router
   ) { }
 
   async login(email:string,password:string){
     
     try {
       const result = await this._afAuth.signInWithEmailAndPassword(email,password);
+      this.router.navigate(['/']);
       return result
     } catch (error) {
       console.log(error);
@@ -42,13 +45,15 @@ export class AuthService {
     } catch (error) {
       console.log(error);
     }
-    
   }
 
   async getCurrentUSer(){
     const user = await  this._afAuth.authState.pipe(first()).toPromise();
     if (user){
+      this.logueado = true;
       console.log(user);
+    }else{
+      this.logueado = false;
     }
     // return 
   }
