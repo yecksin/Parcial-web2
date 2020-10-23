@@ -45,9 +45,12 @@ export class AuthService {
     
   }
 
-  getCurrentUSer(){
-    
-    return this._afAuth.authState.pipe(first()).toPromise();
+  async getCurrentUSer(){
+    const user = await  this._afAuth.authState.pipe(first()).toPromise();
+    if (user){
+      console.log(user);
+    }
+    // return 
   }
   // login(user: UserI) {
   //   const passKey = "suanfanzon";

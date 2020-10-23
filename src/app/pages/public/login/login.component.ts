@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this._auth.getCurrentUSer();
   }
 
   goToRegister() {
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     console.log("login");
     const {email,password} = this.userForm.value;
     this._auth.login(email,password);
-  //  this._auth.login();
+  //  this._auth.login(); 
+  
   }
 
 }
