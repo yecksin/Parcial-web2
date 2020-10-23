@@ -18,6 +18,7 @@ export class AuthService {
   ) { }
 
   async login(email:string,password:string){
+    
     try {
       const result = await this._afAuth.signInWithEmailAndPassword(email,password);
       return result
@@ -45,6 +46,7 @@ export class AuthService {
   }
 
   getCurrentUSer(){
+    
     return this._afAuth.authState.pipe(first()).toPromise();
   }
   // login(user: UserI) {
