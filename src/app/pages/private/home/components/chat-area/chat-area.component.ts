@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ChatService } from 'src/app/shared/services/chat/chat.service';
 import { MessageI } from '../../interfaces/MessageI';
 
@@ -15,7 +16,7 @@ export class ChatAreaComponent implements OnInit {
 
   msg: string;
 
-  constructor(public chatService: ChatService) { }
+  constructor(public chatService: ChatService, public _auth:AuthService) { }
 
   ngOnInit(): void {
   }

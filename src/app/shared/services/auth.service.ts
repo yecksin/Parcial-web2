@@ -42,6 +42,8 @@ export class AuthService {
   async logout(){
     try {
       await this._afAuth.signOut();
+      console.log("sesion cerrada");
+      this.router.navigate(['/login']);
     } catch (error) {
       console.log(error);
     }
