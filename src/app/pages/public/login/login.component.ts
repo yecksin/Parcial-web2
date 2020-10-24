@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this._auth.getCurrentUSer();
-    this._auth.tostada();
+    //this._auth.tostada();
   }
 
   goToRegister() {

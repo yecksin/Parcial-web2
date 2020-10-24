@@ -20,9 +20,31 @@ export class AuthService {
     private router: Router
   
   ) { }
- tostada(){
-   
-  bulmaToast.toast({ message: "Hello There" ,
+ tostada(menError){
+  let mensaje;
+
+  switch(menError) { 
+    case "auth/user-not-found": { 
+      mensaje="Usuario no registrado"; 
+       break; 
+    } 
+    case "auth/wrong-password": { 
+      mensaje="Contraseña incorrecta"; 
+       break; 
+    } 
+    case "auth/invalid-email": { 
+      mensaje="Email invalido"; 
+      break; 
+   } 
+    default: { 
+      mensaje="Error"
+       break; 
+    } 
+ }
+  console.log(mensaje);
+  console.log(menError);
+
+  bulmaToast.toast({ message: mensaje,
   position: "top-center",
   type: "is-success"
 });
@@ -36,8 +58,11 @@ export class AuthService {
       return result
     } catch (error) {
       console.log(error);
+      //return this.menError=error.code;
+      this.tostada(error.code);
+      
       //"auth/user-not-found" 
-      // "auth/wrong-password"
+      //"auth/wrong-password"
       //"auth/invalid-email"
     }
   }
