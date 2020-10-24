@@ -35,6 +35,10 @@ export class AuthService {
     case "auth/invalid-email": { 
       mensaje="Email invalido"; 
       break; 
+   }
+   case "auth/weak-password": { 
+    mensaje="La contraseña debe tener mas de 6 caracteres"; 
+    break; 
    } 
     default: { 
       mensaje="Error"
@@ -72,6 +76,8 @@ export class AuthService {
       const result = await this._afAuth.createUserWithEmailAndPassword(email,password);
     } catch (error) {
       console.log(error);
+      //"auth/weak-password"
+      this.tostada(error.code);
     }
    
   }
