@@ -94,6 +94,18 @@ $titleFont: sfProTextMedium;
                             background: #D5D5D5;
                             border-radius: 50%;
                         }
+
+                        .dropdown{
+                            position:relative;
+                            left: -190px;
+                            top: 40px;
+                            .dropdown-item{
+                                padding: 10px 0 10px 20px;
+                                .ocultar{
+                                    display:none;
+                                }
+                            }
+                        }                  
                     }
                 }
             }
