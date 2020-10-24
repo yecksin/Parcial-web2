@@ -100,6 +100,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  
+  dropdown_inventado(){
+    console.log("El bichoo")
+
+    
+    
+  }
 
 }
