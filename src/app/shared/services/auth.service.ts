@@ -1,4 +1,4 @@
-import { first } from 'rxjs/operators'
+import { first, switchMap } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 import { UserI } from '../interfaces/UserI';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { User } from 'firebase/app';
 import * as bulmaToast from "bulma-toast";
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,12 +15,22 @@ export class AuthService {
   public user:User
 
   logueado = false;
-
+  public user$:Observable<User>;
   constructor(
     public _afAuth:AngularFireAuth,
     private router: Router
   
-  ) { }
+  ) { 
+   this.subido();
+  }
+  subido(){
+    this.user$ = this._afAuth.authState;
+    this.user$.subscribe(resp=>{
+      console.log("estado");
+      console.log(resp);
+      
+    })
+  }
  tostada(menError){
   let mensaje;
 
