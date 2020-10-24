@@ -58,7 +58,7 @@ export class AuthService {
     
     try {
       const result = await this._afAuth.signInWithEmailAndPassword(email,password);
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
       return result
     } catch (error) {
       console.log(error);
