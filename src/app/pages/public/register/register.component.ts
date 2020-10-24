@@ -28,11 +28,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onRegister() {
+  async onRegister() {
     console.log("Register");
     console.log(this.userForm.value);
     const {email,password} = this.userForm.value;
-    this._auth.register(email,password);
+   
+
+    try {
+      const user: any= await this._auth.register(email,password)
+      if(user){
+      //  this.router.navigate(["/login"]);
+      }
+    } catch (error) {
+      
+    }
     // e.preventDefault();
 
     // const user: UserI = {

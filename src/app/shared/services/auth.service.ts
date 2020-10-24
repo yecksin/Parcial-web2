@@ -40,6 +40,11 @@ export class AuthService {
     mensaje="La contraseña debe tener mas de 6 caracteres"; 
     break; 
    } 
+
+   case "auth/email-already-in-use": { 
+    mensaje="Email ya registrado"; 
+    break; 
+   } 
     default: { 
       mensaje="Error"
        break; 
@@ -50,7 +55,8 @@ export class AuthService {
 
   bulmaToast.toast({ message: mensaje,
   position: "top-center",
-  type: "is-success"
+  type: "is-success",
+  duration: 5000
 });
   
  }
@@ -74,12 +80,12 @@ export class AuthService {
   async register(email:string,password:string){
     try {
       const result = await this._afAuth.createUserWithEmailAndPassword(email,password);
+      this.router.navigate(["/login"]);
     } catch (error) {
       console.log(error);
       //"auth/weak-password"
       this.tostada(error.code);
     }
-   
   }
 
   async logout(){
@@ -121,8 +127,4 @@ export class AuthService {
   //   window.localStorage.clear();
   //   window.location.href = '';
   // }
-
-
-
-
 }

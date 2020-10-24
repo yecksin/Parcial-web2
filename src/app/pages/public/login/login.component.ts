@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     const {email,password} = this.userForm.value;
     try {
       const user = await this._auth.login(email,password);
-      if(user ){
+      if(user){
         this.router.navigate(['/']);
       }
       
