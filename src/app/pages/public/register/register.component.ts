@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     name: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    favNumber: new FormControl(''),
+    phone: new FormControl('', Validators.required),
   });
 
   constructor(
@@ -29,11 +29,11 @@ export class RegisterComponent implements OnInit {
   }
 
   async onRegister(userForm) {
-    console.log("Register");
-    console.log(this.userForm.value);
-    const {email,password} = this.userForm.value;
-    console.log("formulario");
-    console.log(this.userForm.value);
+    // console.log("Register");
+    // console.log(this.userForm.value);
+    // // const {email,password} = this.userForm.value;
+    // console.log("formulario");
+    // console.log(this.userForm.value);
    
 
     try {

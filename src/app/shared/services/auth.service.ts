@@ -156,7 +156,7 @@ export class AuthService {
       name,
       lname,
       // password,
-      favNumber,
+      phone,
     } = userForm.value;
     this.db.database.ref('users/' +uid).update({
       email,
@@ -164,7 +164,7 @@ export class AuthService {
       name,
       lname,
       // password,
-      favNumber
+      phone
       
     }).then(()=>{
 
