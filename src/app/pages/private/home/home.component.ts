@@ -108,4 +108,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     document.getElementById(modalId).classList.toggle("is-active");
   }
 
+  openDropDown(DropDownId){
+    document.getElementById(DropDownId).classList.toggle("is-active");
+    // document.getElementById(DropDownId).classList.toggle("animate__zoomIn");
+  }
+
 }
