@@ -28,21 +28,26 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onRegister() {
+  async onRegister(userForm) {
     console.log("Register");
     console.log(this.userForm.value);
     const {email,password} = this.userForm.value;
+    console.log("formulario");
+    console.log(this.userForm.value);
    
 
     try {
-      const user: any= await this._auth.register(email,password)
-      if(user){
+      const user= await this._auth.register(userForm)
+      // if(user){
+      //   console.log("usuario creado correctamente!!");
+      //   console.log(user.user.uid);
+
       //  this.router.navigate(["/login"]);
-      }
+      // }
     } catch (error) {
       
     }
-    // e.preventDefault();
+    // e.preventDefault();s
 
     // const user: UserI = {
     //   email: "pabhoz@usbcali.edu.co",

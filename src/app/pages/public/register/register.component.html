@@ -17,7 +17,7 @@
       <div class="media-content">
         <div class="content">
 
-          <form [formGroup]="userForm" (ngSubmit)="onRegister()">
+          <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm)">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
                 <input class="input" formControlName="email" type="email" placeholder="Email">

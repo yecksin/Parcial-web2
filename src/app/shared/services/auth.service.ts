@@ -12,86 +12,97 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  public user:User
-
+  public user: User
   logueado = false;
-  public user$:Observable<User>;
+  public user$: Observable<User>;
   constructor(
-    public _afAuth:AngularFireAuth,
-    private router: Router
-  
-  ) { 
-   this.subido();
+    public _afAuth: AngularFireAuth,
+    private router: Router,
+    private db:AngularFireDatabase
+  ) {
+    this.subido();
   }
-  subido(){
+  subido() {
     this.user$ = this._afAuth.authState;
-    this.user$.subscribe(resp=>{
+    this.user$.subscribe(resp => {
       console.log("estado");
       console.log(resp);
-      
+
     })
   }
- tostada(menError){
-  let mensaje;
+  tostada(menError) {
+    let mensaje;
 
-  switch(menError) { 
-    case "auth/user-not-found": { 
-      mensaje="Usuario no registrado"; 
-       break; 
-    } 
-    case "auth/wrong-password": { 
-      mensaje="Contraseña incorrecta"; 
-       break; 
-    } 
-    case "auth/invalid-email": { 
-      mensaje="Email invalido"; 
-      break; 
-   }
-   case "auth/weak-password": { 
-    mensaje="La contraseña debe tener mas de 6 caracteres"; 
-    break; 
-   } 
+    switch (menError) {
+      case "auth/user-not-found": {
+        mensaje = "Usuario no registrado";
+        break;
+      }
+      case "auth/wrong-password": {
+        mensaje = "Contraseña incorrecta";
+        break;
+      }
+      case "auth/invalid-email": {
+        mensaje = "Email invalido";
+        break;
+      }
+      case "auth/weak-password": {
+        mensaje = "La contraseña debe tener mas de 6 caracteres";
+        break;
+      }
 
-   case "auth/email-already-in-use": { 
-    mensaje="Email ya registrado"; 
-    break; 
-   } 
-    default: { 
-      mensaje="Error"
-       break; 
-    } 
- }
-  console.log(mensaje);
-  console.log(menError);
+      case "auth/email-already-in-use": {
+        mensaje = "Email ya registrado";
+        break;
+      }
+      default: {
+        mensaje = "Error"
+        break;
+      }
+    }
+    console.log(mensaje);
+    console.log(menError);
 
-  bulmaToast.toast({ message: mensaje,
-  position: "top-center",
-  type: "is-success",
-  duration: 5000
-});
-  
- }
-  async login(email:string,password:string){
-    
+    bulmaToast.toast({
+      message: mensaje,
+      position: "top-center",
+      type: "is-success",
+      duration: 5000
+    });
+
+  }
+  async login(email: string, password: string) {
+
     try {
-      const result = await this._afAuth.signInWithEmailAndPassword(email,password);
+      const result = await this._afAuth.signInWithEmailAndPassword(email, password);
       //this.router.navigate(['/']);
       return result
     } catch (error) {
       console.log(error);
       //return this.menError=error.code;
       this.tostada(error.code);
-      
+
       //"auth/user-not-found" 
       //"auth/wrong-password"
       //"auth/invalid-email"
     }
   }
 
-  async register(email:string,password:string){
+  async register(userForm) {
+    const {
+      email,
+      password
+    } = userForm.value;
     try {
-      const result = await this._afAuth.createUserWithEmailAndPassword(email,password);
-      this.router.navigate(["/login"]);
+      const result = await this._afAuth.createUserWithEmailAndPassword(email, password);
+      if(result){
+        console.log("usuario creado correctamente!!");
+        console.log(result.user.uid);
+        this.pushInfoUser(userForm,result.user.uid);
+       this.router.navigate(["/login"]);
+      }
+      return result;
+      // this.router.navigate(["/login"]);
     } catch (error) {
       console.log(error);
       //"auth/weak-password"
@@ -99,7 +110,7 @@ export class AuthService {
     }
   }
 
-  async logout(){
+  async logout() {
     try {
       await this._afAuth.signOut();
       console.log("sesion cerrada");
@@ -109,33 +120,54 @@ export class AuthService {
     }
   }
 
-  async getCurrentUSer(){
-    const user = await  this._afAuth.authState.pipe(first()).toPromise();
-    if (user){
+  async getCurrentUSer() {
+    const user = await this._afAuth.authState.pipe(first()).toPromise();
+    if (user) {
       this.logueado = true;
       console.log(user);
-    }else{
+    } else {
       this.logueado = false;
     }
     // return 
   }
-  // login(user: UserI) {
-  //   const passKey = "suanfanzon";
-  //   if (user.password === passKey) {
-  //     this.user = user;
-  //     window.localStorage.setItem('user', JSON.stringify(this.user));
-  //   }
-  // }
+  metodo1() {
+    let itemRef1 = this.db.object('users');
+    itemRef1.snapshotChanges().subscribe(action => {
+      console.log(action.type);
+      console.log(action.key);
+      console.log('Tiempo real', action.payload.val());
 
-  // isLogged() {
-  //   const user = window.localStorage.getItem('user') || undefined;
-  //   const isLogged = user ? true : false;
-  //   if (isLogged) this.user = JSON.parse(user);
-  //   return isLogged;
-  // }
+      // this.lugares = [];
+      // for (let k in action.payload.val()) {
+      //   let lugar = action.payload.val()[k];
+      //   lugar.key = k;
+      //   this.lugares.push(lugar);
+      // }
 
-  // logout() {
-  //   window.localStorage.clear();
-  //   window.location.href = '';
-  // }
+      // console.log(this.lugares);
+
+    });
+
+  }
+  pushInfoUser(userForm,uid) {
+    const {
+      email,
+      username,
+      name,
+      lname,
+      password,
+      favNumber,
+    } = userForm.value;
+    this.db.database.ref('users/' +uid).update({
+      email,
+      username,
+      name,
+      lname,
+      password,
+      favNumber
+      
+    }).then(()=>{
+
+    });
+  }
 }
