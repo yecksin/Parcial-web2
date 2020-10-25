@@ -1,3 +1,5 @@
+ <!-- Compiled and minified CSS -->
+ <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 <div id="app">
     <div class="leftBigContainer">
         <div class="topBarLeft">
@@ -39,7 +41,7 @@
                                 </a>
 
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item">
+                                <a href="#" (click)="openModal('perfil')" class="dropdown-item">
                                   Perfil
                                 </a>
 
@@ -86,4 +88,24 @@
     <div class="rightBigContainer">
         <app-chat-area [title]="currentChat.title" [icon]="currentChat.icon" [msgs]="currentChat.msgs"></app-chat-area>
     </div>
+</div>
+
+
+
+
+<div class="modal" id="perfil">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" aria-label="close" (click)="openModal('perfil')"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="openModal('perfil')">Save changes</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
 </div>

@@ -101,10 +101,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   dropdown_inventado(){
-    console.log("El bichoo")
+    console.log("El bichoo")    
+  }
 
-    
-    
+  openModal(modalId){
+    document.getElementById(modalId).classList.toggle("is-active");
   }
 
 }
