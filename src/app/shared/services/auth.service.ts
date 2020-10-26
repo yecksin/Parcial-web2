@@ -18,15 +18,16 @@ export class AuthService {
   constructor(
     public _afAuth: AngularFireAuth,
     private router: Router,
-    private db:AngularFireDatabase
+    private db: AngularFireDatabase
   ) {
     this.subido();
   }
   subido() {
     this.user$ = this._afAuth.authState;
     this.user$.subscribe(resp => {
-      console.log("estado");
-      console.log(resp);
+      // console.log("estado");
+      // console.log(resp);
+
 
     })
   }
@@ -73,19 +74,26 @@ export class AuthService {
   }
   async login(email: string, password: string) {
 
-    try {
-      const result = await this._afAuth.signInWithEmailAndPassword(email, password);
-      //this.router.navigate(['/']);
-      return result
-    } catch (error) {
-      console.log(error);
-      //return this.menError=error.code;
-      this.tostada(error.code);
+    if (isNaN(Number(email))) {
+      console.log(email + ": Login con email");
 
-      //"auth/user-not-found" 
-      //"auth/wrong-password"
-      //"auth/invalid-email"
+      try {
+        console.log("ingresando login y pass");
+        const result = await this._afAuth.signInWithEmailAndPassword(email, password);
+        if (result.user) {
+          this.router.navigate(['/']);
+        }
+        // return result
+      } catch (error) {
+        console.log(error);
+      }
+
+    } else {
+      console.log("Login con numero de telefono");
+      this.getEmailToLogin(Number(email), password);
+
     }
+
   }
 
   async register(userForm) {
@@ -95,11 +103,11 @@ export class AuthService {
     } = userForm.value;
     try {
       const result = await this._afAuth.createUserWithEmailAndPassword(email, password);
-      if(result){
+      if (result) {
         console.log("usuario creado correctamente!!");
         console.log(result.user.uid);
-        this.pushInfoUser(userForm,result.user.uid);
-       this.router.navigate(["/login"]);
+        this.pushInfoUser(userForm, result.user.uid);
+        this.router.navigate(["/login"]);
       }
       return result;
       // this.router.navigate(["/login"]);
@@ -149,7 +157,7 @@ export class AuthService {
     });
 
   }
-  pushInfoUser(userForm,uid) {
+  pushInfoUser(userForm, uid) {
     const {
       email,
       username,
@@ -158,16 +166,33 @@ export class AuthService {
       // password,
       phone,
     } = userForm.value;
-    this.db.database.ref('users/' +uid).update({
+    this.db.database.ref('users/' + uid).update({
       email,
       username,
       name,
       lname,
       // password,
       phone
-      
-    }).then(()=>{
+
+    }).then(() => {
 
     });
   }
+
+
+  getEmailToLogin(phone, password) {
+    let itemRef1 = this.db.object('users');
+    let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
+      for (let k in action.payload.val()) {
+        if (action.payload.val()[k].phone == phone) {
+          console.log("El correo es: " + action.payload.val()[k].email);
+          this.login(action.payload.val()[k].email, password);
+          subscription.unsubscribe();
+        }
+      }
+    });
+  }
+
 }
+
+

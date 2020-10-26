@@ -24,9 +24,6 @@ export class AuthGuard implements CanActivate {
     }*/
    return  this._afAuth.authState.pipe(
       map(auth=>{
-        console.log("jelou");
-        
-        console.log(auth);
         if(auth){
           return true;
         }else{

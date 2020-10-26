@@ -30,40 +30,11 @@ export class RegisterComponent implements OnInit {
   }
 
   async onRegister(userForm) {
-    // console.log("Register");
-    // console.log(this.userForm.value);
-    // // const {email,password} = this.userForm.value;
-    // console.log("formulario");
-    // console.log(this.userForm.value);
-   
-
     try {
-      const user= await this._auth.register(userForm)
-      // if(user){
-      //   console.log("usuario creado correctamente!!");
-      //   console.log(user.user.uid);
-
-      //  this.router.navigate(["/login"]);
-      // }
+      return await this._auth.register(userForm)
     } catch (error) {
-      
+      console.log(error);
     }
-    // e.preventDefault();s
-
-    // const user: UserI = {
-    //   email: "pabhoz@usbcali.edu.co",
-    //   username: "pabhoz",
-    //   favNumber: 4,
-    //   lname: "Bejarano",
-    //   password: "suanfanzon",
-    //   name: "Pablo",
-    // };
-
-    // console.log(this.userForm);
-
-    //this.authService.login(user);
-
-    //this.router.navigate(['/']);
   }
 
   goToLogin() {

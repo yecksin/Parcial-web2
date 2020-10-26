@@ -32,15 +32,11 @@ export class LoginComponent implements OnInit {
   async onLogin() {
     const {email,password} = this.userForm.value;
     try {
-      const user = await this._auth.login(email,password);
-      if(user){
-        this.router.navigate(['/']);
-      }
-      
+      return await this._auth.login(email,password);
     } catch (error) {
-      
+      console.log(error);
     }
-    console.log("login");
+  
     
     
   //  this._auth.login(); 
