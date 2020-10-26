@@ -19,20 +19,50 @@
 
           <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm)">
             <div class="field">
-              <p class="control has-icons-left has-icons-right">
-                <input class="input" formControlName="email" type="email" placeholder="Email">
+              <div class="control has-icons-left has-icons-right">
+                <input class="input" formControlName="email" type="email" placeholder="Email" [ngClass]="{ 'is-danger': userForm.controls.email.invalid,'is-success': !userForm.controls.email.invalid && userForm.value.email}">
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
                 <span class="icon is-small is-right">
                   <i class="fas fa-check"></i>
                 </span>
-              </p>
+              </div>
+              <p *ngIf=" userForm.controls.email.invalid" class="help is-danger">This email is invalid</p>
+              <p *ngIf=" !userForm.controls.email.invalid && userForm.value.email" class="help is-success">This email is valid</p>
             </div>
             <div class="field">
               <p class="control has-icons-left">
-                <input class="input" formControlName="username" [value]="userForm.controls.username.value" type="text"
-                  placeholder="Username">
+                <input class="input" formControlName="username" type="text"
+                  placeholder="Username"  [ngClass]="{ 'is-success': !userForm.controls.username.invalid && userForm.value.username}">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <div class="control has-icons-left">
+                <input class="input" type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-danger': userForm.controls.password.invalid,'is-success': !userForm.controls.password.invalid && userForm.value.password}">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+              <p *ngIf=" userForm.controls.password.invalid" class="help is-danger">Constraseishon muy corteishon</p>
+              <p *ngIf=" !userForm.controls.password.invalid && userForm.value.password" class="help is-success">Constraseishon bueneseishon</p>
+            </div>
+            <div class="field">
+              <div class="control has-icons-left">
+                <input class="input" type="password" formControlName="passwordConfirm" placeholder="Password" [ngClass]="{ 'is-danger': pwdMatchValidator2(userForm),'is-success': !pwdMatchValidator2(userForm)&&userForm.value.password}">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+              <p *ngIf=" pwdMatchValidator2(userForm)" class="help is-danger">Constraseishon no es igualeishon</p>
+              <p *ngIf=" !pwdMatchValidator2(userForm) &&userForm.value.password" class="help is-success">Constraseishon es igualeishon</p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" formControlName="name" type="text" placeholder="Name"  [ngClass]="{ 'is-success': !userForm.controls.name.invalid && userForm.value.name}">
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
@@ -40,43 +70,19 @@
             </div>
             <div class="field">
               <p class="control has-icons-left">
-                <input class="input" type="password" formControlName="password" placeholder="Password">
+                <input class="input" formControlName="lname" type="text" placeholder="Last Name"  [ngClass]="{ 'is-success': !userForm.controls.lname.invalid && userForm.value.lname}">
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
               </p>
             </div>
             <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" type="password" formControlName="passwordConfirm" placeholder="Password">
+              <div class="control has-icons-left">
+                <input class="input" formControlName="phone" type="number" placeholder="Phone Number" [ngClass]="{ 'is-success': !userForm.controls.phone.invalid && userForm.value.phone}">
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" formControlName="name" type="text" placeholder="Name">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" formControlName="lname" type="text" placeholder="Last Name">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" formControlName="phone" type="number" placeholder="Phone Number">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
+              </div>
             </div>
             <div class="field">
               <div class="buttons">
