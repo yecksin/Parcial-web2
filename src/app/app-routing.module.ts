@@ -7,11 +7,12 @@ import { LoginComponent } from './pages/public/login/login.component';
 import { RegisterComponent } from './pages/public/register/register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { PublicGuard } from './shared/guards/public.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [PublicGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [PublicGuard]  },
   { path: '**', redirectTo: '/' },
 ];
 
