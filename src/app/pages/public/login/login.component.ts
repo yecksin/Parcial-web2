@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   title: string = "Hola Mundo";
   color: string = "red"
   userForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.required),
   });
   constructor(

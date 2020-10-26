@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     lname: new FormControl('', Validators.required),
     password: new FormControl('', Validators.minLength(6)),
     passwordConfirm: new FormControl('', Validators.minLength(6)),
-    phone: new FormControl('',  Validators.required)
+    phone: new FormControl('', [Validators.required,Validators.minLength(6)] )
   }, this.pwdMatchValidator);
 
   constructor(
