@@ -31,8 +31,8 @@
           </div>
           <div class="field">
             <div class="buttons">
-              <button  (click)="goToRegister()" class="button is-info">Register</button>
-              <button type="submit" class="button is-success" >Login</button>
+              <button  (click)="goToRegister()"  class="button is-info">Register</button>
+              <button type="submit"  [disabled]="userForm.invalid"  class="button is-success" >Login</button>
             </div>
           </div>
         </form>
