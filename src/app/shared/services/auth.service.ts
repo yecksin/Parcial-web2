@@ -86,6 +86,8 @@ export class AuthService {
         // return result
       } catch (error) {
         console.log(error);
+        this.tostada(error.code);
+
       }
 
     } else {
