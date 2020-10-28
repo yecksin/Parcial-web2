@@ -10,8 +10,10 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { environment } from '../environments/environment.prod';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Esto va en imports: 
-
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,12 @@ import { environment } from '../environments/environment.prod';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+
+    MatInputModule,
+    MatIconModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
