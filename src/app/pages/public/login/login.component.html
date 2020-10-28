@@ -10,25 +10,21 @@
       <div class="media-content">
         <div class="content">
           <form [formGroup]="userForm" (ngSubmit)="onLogin()">
-          <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" formControlName="email" type="email" placeholder="Email">
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" formControlName="password" type="password" placeholder="Password">
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </p>
-          </div>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Enter your Email or Phone</mat-label>
+              <input matInput placeholder="pat@example.com or 315788356309" formControlName="email" required>
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="userForm.controls.email.invalid">Error email</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="Password" placeholder="Password" formControlName="password" required >
+              <mat-icon matSuffix>no_encryption</mat-icon>
+              <mat-error *ngIf="userForm.controls.password.invalid">Error pass</mat-error>
+            </mat-form-field>
+
           <div class="field">
             <div class="buttons">
               <button  (click)="goToRegister()"  class="button is-info">Register</button>
@@ -41,5 +37,3 @@
     </article>
   </div>
 </div>
-
-
