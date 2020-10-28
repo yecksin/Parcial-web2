@@ -38,21 +38,21 @@
               <mat-label>Password</mat-label>
               <input matInput type="password" placeholder="Password" formControlName="password" required >
               <mat-icon matSuffix>no_encryption</mat-icon>
-              <mat-error *ngIf="userForm.controls.password.invalid">Error pass</mat-error>
+              <mat-error *ngIf="userForm.controls.password.invalid">The password is short</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" >
               <mat-label>passwordConfirm</mat-label>
               <input matInput type="password" placeholder="passwordConfirm" formControlName="passwordConfirm" required>
               <mat-icon matSuffix>no_encryption</mat-icon>
-              <mat-error >Error pass</mat-error>
+              <mat-error >The two passwords do not match</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" >
               <mat-label>Name</mat-label>
               <input matInput type="text" placeholder="Name" formControlName="name" required>
               <mat-icon matSuffix>edit</mat-icon>
-              <mat-error >Error pass</mat-error>
+              <mat-error >Name error</mat-error>
             </mat-form-field>
 
 
@@ -60,7 +60,7 @@
               <mat-label>Last Name</mat-label>
               <input matInput type="text" placeholder="Last Name" formControlName="lname"required >
               <mat-icon matSuffix>edit</mat-icon>
-              <mat-error >Error pass</mat-error>
+              <mat-error >Last name error</mat-error>
             </mat-form-field>
             
 
@@ -82,7 +82,7 @@
                 <mat-label>Phone Number</mat-label>
                 <input matInput type="number" placeholder="Phone Number" formControlName="phone" required >
                 <mat-icon matSuffix>call</mat-icon>
-                <mat-error >Error pass</mat-error>
+                <mat-error >The phone number is wrong</mat-error>
               </mat-form-field>
 
             </div>
