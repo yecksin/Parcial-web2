@@ -82,3 +82,12 @@ $titleFont: sfProTextMedium;
 .mat-form-field {
     width: 100%;
 }
+
+.gir_jair{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+body .mat-form-field-appearance-fill .mat-form-field-flex {
+background-color: white !important;
+}
