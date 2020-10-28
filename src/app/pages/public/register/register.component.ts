@@ -26,12 +26,12 @@ export class RegisterComponent implements OnInit {
     private _auth: AuthService
   ) { }
   pwdMatchValidator(frm: FormGroup) {
-    console.log(frm.get('password').value + " " + frm.get('passwordConfirm').value);
+    //console.log(frm.get('password').value + " " + frm.get('passwordConfirm').value);
     if(frm.get('password').value == frm.get('passwordConfirm').value){
-      console.log("Son IGuales");
+      // console.log("Son IGuales");
       frm.controls['passwordConfirm'].setErrors(null);
     }else{
-      console.log("Son diferentes");
+      // console.log("Son diferentes");
       // frm.get('passwordConfirm').setErrors( {MatchPassword: true} )
       frm.controls['passwordConfirm'].setErrors({'incorrect': true});
     }

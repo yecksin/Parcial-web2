@@ -107,6 +107,7 @@ export class AuthService {
         console.log("usuario creado correctamente!!");
         console.log(result.user.uid);
         this.pushInfoUser(userForm, result.user.uid);
+        this.logout();
         this.router.navigate(["/login"]);
       }
       return result;
