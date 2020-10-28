@@ -14,7 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Esto va en imports: 
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,9 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
 
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatGridListModule
 
   ],
   providers: [],
