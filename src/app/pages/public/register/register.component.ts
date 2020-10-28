@@ -16,22 +16,34 @@ export class RegisterComponent implements OnInit {
     username: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     lname: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.minLength(6)),
-    passwordConfirm: new FormControl('', Validators.minLength(6)),
-    phone: new FormControl('', [Validators.required,Validators.minLength(6)] )
+    password: new FormControl('',[Validators.required,Validators.minLength(6)] ),
+    passwordConfirm: new FormControl('',[Validators.required,Validators.minLength(6)]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(6)])
   }, this.pwdMatchValidator);
 
   constructor(
-    private router:Router,
-    private _auth:AuthService
-    ) { }
-    pwdMatchValidator(frm: FormGroup) {
-      return frm.get('password').value === frm.get('passwordConfirm').value? null : {'mismatch': true};
-   }
+    private router: Router,
+    private _auth: AuthService
+  ) { }
+  pwdMatchValidator(frm: FormGroup) {
+    console.log(frm.get('password').value + " " + frm.get('passwordConfirm').value);
+    if(frm.get('password').value == frm.get('passwordConfirm').value){
+      console.log("Son IGuales");
+      frm.controls['passwordConfirm'].setErrors(null);
+    }else{
+      console.log("Son diferentes");
+      // frm.get('passwordConfirm').setErrors( {MatchPassword: true} )
+      frm.controls['passwordConfirm'].setErrors({'incorrect': true});
+    }
+   
+    return frm.get('password').value === frm.get('passwordConfirm').value ? null : { 'mismatch': true };
+  }
 
-   pwdMatchValidator2(frm: FormGroup) {
-    return frm.get('password').value === frm.get('passwordConfirm').value? null :true;
- }
+  // pwdMatchValidator2(frm: FormGroup) {
+  //   console.log(frm.get('password').value + " " + frm.get('passwordConfirm').value);
+  //   frm.get('passwordConfirm').setErrors( {MatchPassword: false} )
+  //   return frm.get('password').value === frm.get('passwordConfirm').value ? null : true;
+  // }
   ngOnInit(): void {
   }
 

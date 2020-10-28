@@ -18,81 +18,102 @@
         <div class="content">
 
           <form [formGroup]="userForm" (ngSubmit)="onRegister(userForm)">
-            <div class="field">
-              <div class="control has-icons-left has-icons-right">
-                <input class="input" formControlName="email" type="email" placeholder="Email" [ngClass]="{ 'is-danger': userForm.controls.email.invalid,'is-success': !userForm.controls.email.invalid && userForm.value.email}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
-              </div>
-              <p *ngIf=" userForm.controls.email.invalid" class="help is-danger">This email is invalid</p>
-              <p *ngIf=" !userForm.controls.email.invalid && userForm.value.email" class="help is-success">This email is valid</p>
+
+
+            <mat-form-field appearance="outline">
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="pat@example.com" formControlName="email" required>
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="userForm.controls.email.invalid">Error email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="Username" formControlName="username" required>
+              <mat-icon matSuffix>face</mat-icon>
+              <!-- <mat-error *ngIf="username.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Password" formControlName="password" required >
+              <mat-icon matSuffix>no_encryption</mat-icon>
+              <mat-error *ngIf="userForm.controls.password.invalid">Error pass</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" >
+              <mat-label>passwordConfirm</mat-label>
+              <input matInput type="password" placeholder="passwordConfirm" formControlName="passwordConfirm" required>
+              <mat-icon matSuffix>no_encryption</mat-icon>
+              <mat-error >Error pass</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" >
+              <mat-label>Name</mat-label>
+              <input matInput type="text" placeholder="Name" formControlName="name" required>
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-error >Error pass</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" >
+              <mat-label>Last Name</mat-label>
+              <input matInput type="text" placeholder="Last Name" formControlName="lname"required >
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-error >Error pass</mat-error>
+            </mat-form-field>
+            
+
+
+            <div class="gir_jair">
+
+              <mat-form-field appearance="fill">
+                <mat-label>Code</mat-label>
+                <mat-select>
+                  <mat-option>None</mat-option>
+                  <mat-option value="option1">+57</mat-option>
+                  <mat-option value="option2">+1</mat-option>
+                  <mat-option value="option3">+22</mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+  
+              <mat-form-field appearance="outline" style="padding-left: 10px;">
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="number" placeholder="Phone Number" formControlName="phone" required >
+                <mat-icon matSuffix>call</mat-icon>
+                <mat-error >Error pass</mat-error>
+              </mat-form-field>
+
             </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" formControlName="username" type="text"
-                  placeholder="Username"  [ngClass]="{ 'is-success': !userForm.controls.username.invalid && userForm.value.username}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <div class="control has-icons-left">
-                <input class="input" type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-danger': userForm.controls.password.invalid,'is-success': !userForm.controls.password.invalid && userForm.value.password}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </div>
-              <p *ngIf=" userForm.controls.password.invalid" class="help is-danger">Constraseishon muy corteishon</p>
-              <p *ngIf=" !userForm.controls.password.invalid && userForm.value.password" class="help is-success">Constraseishon bueneseishon</p>
-            </div>
-            <div class="field">
-              <div class="control has-icons-left">
-                <input class="input" type="password" formControlName="passwordConfirm" placeholder="Password" [ngClass]="{ 'is-danger': pwdMatchValidator2(userForm),'is-success': !pwdMatchValidator2(userForm)&&userForm.value.password}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </div>
-              <p *ngIf=" pwdMatchValidator2(userForm)" class="help is-danger">Constraseishon no es igualeishon</p>
-              <p *ngIf=" !pwdMatchValidator2(userForm) &&userForm.value.password" class="help is-success">Constraseishon es igualeishon</p>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" formControlName="name" type="text" placeholder="Name"  [ngClass]="{ 'is-success': !userForm.controls.name.invalid && userForm.value.name}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" formControlName="lname" type="text" placeholder="Last Name"  [ngClass]="{ 'is-success': !userForm.controls.lname.invalid && userForm.value.lname}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div class="field">
+            
+
+            
+
+
+  
+
+            <!-- <div class="field">
               <div class="control has-icons-left">
                 <input class="input" formControlName="phone" type="number" placeholder="Phone Number" [ngClass]="{ 'is-success': !userForm.controls.phone.invalid && userForm.value.phone}">
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
               </div>
-            </div>
+            </div> -->
 
-            <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
               <mat-label>Outline form field</mat-label>
               <input matInput placeholder="Placeholder">
               <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-              <mat-hint>Hint</mat-hint>
-            </mat-form-field>
+              <mat-error *ngIf="true">NAda</mat-error>
+            </mat-form-field> -->
+
+           
+
+           
             
-            <div class="field has-addons">
+            <!-- <div class="field has-addons">
               <p class="control">
                 <span class="select">
                   <select>
@@ -106,7 +127,7 @@
                 <input class="input" type="text" placeholder="Amount of money">
               </p>
  
-            </div>
+            </div> -->
             
             <div class="field">
               <div class="buttons">
