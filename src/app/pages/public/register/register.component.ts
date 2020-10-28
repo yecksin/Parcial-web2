@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  phoneCodes=['+57','+32','+61','+242','+49','+973','+55','+33','+63','+45','+502','+1','+91','+98','+39'];
+
   userForm = new FormGroup({
     email: new FormControl('', Validators.email),
     username: new FormControl('', Validators.required),
@@ -18,6 +20,7 @@ export class RegisterComponent implements OnInit {
     lname: new FormControl('', Validators.required),
     password: new FormControl('',[Validators.required,Validators.minLength(6)] ),
     passwordConfirm: new FormControl('',[Validators.required,Validators.minLength(6)]),
+    phoneCode: new FormControl('', Validators.required),
     phone: new FormControl('', [Validators.required, Validators.minLength(6)])
   }, this.pwdMatchValidator);
 

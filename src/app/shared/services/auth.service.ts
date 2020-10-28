@@ -103,6 +103,7 @@ export class AuthService {
       email,
       password
     } = userForm.value;
+    // console.log(userForm.value);
     try {
       const result = await this._afAuth.createUserWithEmailAndPassword(email, password);
       if (result) {
@@ -166,6 +167,7 @@ export class AuthService {
       username,
       name,
       lname,
+      phoneCode,
       // password,
       phone,
     } = userForm.value;
@@ -174,6 +176,7 @@ export class AuthService {
       username,
       name,
       lname,
+      phoneCode,
       // password,
       phone
 
@@ -197,5 +200,3 @@ export class AuthService {
   }
 
 }
-
-
