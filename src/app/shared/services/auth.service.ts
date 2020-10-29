@@ -12,6 +12,9 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  userData ={
+    name:""
+  };
   public user: User
   logueado = false;
   public user$: Observable<User>;
@@ -20,9 +23,20 @@ export class AuthService {
     private router: Router,
     private db: AngularFireDatabase
   ) {
-   
+    this.subido();
   }
+  subido() {
+    this.user$ = this._afAuth.authState;
+    this.user$.subscribe(resp => {
+      // console.log("estado");
+      console.log(resp.uid);
 
+      this.getUserData(resp.uid);
+
+
+
+    })
+  }
   tostada(menError) {
     let mensaje;
 
@@ -72,6 +86,10 @@ export class AuthService {
       try {
         console.log("ingresando login y pass");
         const result = await this._afAuth.signInWithEmailAndPassword(email, password);
+        this.userData = result;
+        console.log("User Data");
+        console.log(this.userData);
+
         if (result.user) {
           this.router.navigate(['/']);
         }
@@ -134,21 +152,13 @@ export class AuthService {
     }
     // return 
   }
-  metodo1() {
-    let itemRef1 = this.db.object('users');
+  getUserData(uid) {
+    let itemRef1 = this.db.object('users/'+uid);
     itemRef1.snapshotChanges().subscribe(action => {
       console.log(action.type);
       console.log(action.key);
       console.log('Tiempo real', action.payload.val());
-
-      // this.lugares = [];
-      // for (let k in action.payload.val()) {
-      //   let lugar = action.payload.val()[k];
-      //   lugar.key = k;
-      //   this.lugares.push(lugar);
-      // }
-
-      // console.log(this.lugares);
+      this.userData=action.payload.val();
 
     });
 
