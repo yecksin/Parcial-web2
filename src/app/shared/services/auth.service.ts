@@ -86,7 +86,8 @@ export class AuthService {
       try {
         console.log("ingresando login y pass");
         const result = await this._afAuth.signInWithEmailAndPassword(email, password);
-        this.userData = result;
+        
+        // this.userData = result;
         console.log("User Data");
         console.log(this.userData);
 
@@ -158,7 +159,7 @@ export class AuthService {
       console.log(action.type);
       console.log(action.key);
       console.log('Tiempo real', action.payload.val());
-      this.userData=action.payload.val();
+      this.userData.name=action.payload.val()['name'];
 
     });
 
