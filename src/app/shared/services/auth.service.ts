@@ -20,17 +20,9 @@ export class AuthService {
     private router: Router,
     private db: AngularFireDatabase
   ) {
-    this.subido();
+   
   }
-  subido() {
-    this.user$ = this._afAuth.authState;
-    this.user$.subscribe(resp => {
-      // console.log("estado");
-      // console.log(resp);
 
-
-    })
-  }
   tostada(menError) {
     let mensaje;
 

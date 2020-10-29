@@ -27,11 +27,14 @@
 
           <div class="field">
             <div class="buttons">
-              <button  (click)="goToRegister()"  class="button is-info">Register</button>
+              <!-- <button  (click)="goToRegister()"  class="button is-info">Register</button> -->
               <button type="submit"  [disabled]="userForm.invalid"  class="button is-success" >Login</button>
             </div>
           </div>
         </form>
+        <div class="example-button-row centrar-btn">
+          <button mat-button color="primary" routerLink="/register">Go to register</button>
+        </div>
         </div>
       </div>
     </article>

@@ -86,55 +86,18 @@
             </div>
             
 
-            
-
-
-  
-
-            <!-- <div class="field">
-              <div class="control has-icons-left">
-                <input class="input" formControlName="phone" type="number" placeholder="Phone Number" [ngClass]="{ 'is-success': !userForm.controls.phone.invalid && userForm.value.phone}">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </div>
-            </div> -->
-
-            <!-- <mat-form-field appearance="outline">
-              <mat-label>Outline form field</mat-label>
-              <input matInput placeholder="Placeholder">
-              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-              <mat-error *ngIf="true">NAda</mat-error>
-            </mat-form-field> -->
-
-           
-
-           
-            
-            <!-- <div class="field has-addons">
-              <p class="control">
-                <span class="select">
-                  <select>
-                    <option>$</option>
-                    <option>£</option>
-                    <option>€</option>
-                  </select>
-                </span>
-              </p>
-              <p class="control is-expanded">
-                <input class="input" type="text" placeholder="Amount of money">
-              </p>
- 
-            </div> -->
+          
             
             <div class="field">
               <div class="buttons">
-                <button class="button is-success" (click)="goToLogin()">Login</button>
+                <!-- <button class="button is-success" (click)="goToLogin()">Login</button> -->
                 <button type="submit" [disabled]="userForm.invalid" class="button is-info">Register</button>
               </div>
             </div>
           </form>
-
+          <div class="example-button-row centrar-btn">
+            <button mat-button color="primary" routerLink="/login">Go to login</button>
+          </div>
         </div>
       </div>
     </article>
