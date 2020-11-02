@@ -29,9 +29,13 @@ export class AuthService {
     this.user$ = this._afAuth.authState;
     this.user$.subscribe(resp => {
       // console.log("estado");
-      console.log(resp.uid);
+      if(resp != null){
+        this.getUserData(resp.uid);
+      }
+      // console.log(resp);
+      // console.log(resp.uid);
 
-      this.getUserData(resp.uid);
+      
 
 
 
