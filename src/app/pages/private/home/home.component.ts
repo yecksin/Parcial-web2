@@ -30,8 +30,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       msgPreview: "entonces ando usando fotos reales hahaha",
       lastMsg: "11:13",
       msgs: [
-        {content: "Lorem ipsum dolor amet", isRead:true, isMe:true, time:"7:24"},
-        {content: "Qué?", isRead:true, isMe:false, time:"7:25"},
+        {content: "Lorem ipsum dolor amet",chatUid:'XXX', isRead:true, isMe:true, time:"7:24"},
+        {content: "Qué?",chatUid:'XXX', isRead:true, isMe:false, time:"7:25"},
       ]
     },
     {
@@ -90,10 +90,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSelectInbox(index: number) {
-    this.currentChat.title = this.chats[index].title;
-      this.currentChat.icon = this.chats[index].icon;
-      this.currentChat.msgs = this.chats[index].msgs;
+  onSelectInbox(chatUid) {
+    console.log(chatUid);
+    this._users.chatUid = chatUid;
+    // this.currentChat.title = this.chats[index].title;
+    //   this.currentChat.icon = this.chats[index].icon;
+    //   this.currentChat.msgs = this.chats[index].msgs;
   }
 
   doLogout() {

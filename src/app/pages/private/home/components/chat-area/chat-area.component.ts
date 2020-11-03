@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ChatService } from 'src/app/shared/services/chat/chat.service';
+import { UsuariosService } from 'src/app/shared/services/usuarios.service';
 import { MessageI } from '../../interfaces/MessageI';
 
 @Component({
@@ -11,12 +12,14 @@ import { MessageI } from '../../interfaces/MessageI';
 export class ChatAreaComponent implements OnInit {
 
   @Input() title: string = ""
+  @Input() chatUid: string = ""
   @Input() icon: string = ""
   @Input() msgs: Array<MessageI> = []
 
   msg: string;
 
-  constructor(public chatService: ChatService, public _auth:AuthService) { }
+  constructor(public chatService: ChatService, public _auth:AuthService,
+    public _users:UsuariosService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +30,8 @@ export class ChatAreaComponent implements OnInit {
       isMe: true,
       time: "8:58",
       isRead: false,
-      owner: this.title
+      owner: this.title,
+      chatUid : this._users.chatUid
     }
     this.chatService.sendMsg(msg);
     this.msg = "";

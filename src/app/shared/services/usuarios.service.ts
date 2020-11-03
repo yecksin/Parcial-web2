@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 export class UsuariosService {
   usuarios= [];
   chats=[];
+  chatUid='';
   constructor(
     public _afAuth: AngularFireAuth,
     private router: Router,

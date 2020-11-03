@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="inboxChat">
-            <app-inbox-chat *ngFor="let user of _users.chats; let i = index" (click)="onSelectInbox(i)" 
+            <app-inbox-chat *ngFor="let user of _users.chats; let i = index" (click)="onSelectInbox(user.chatUid)" 
             profilePic="/assets/img/ppRightBar.png" 
             [name]="user.customName" 
             msgTime="11:13" 
@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="rightBigContainer">
-        <app-chat-area [title]="currentChat.title" [icon]="currentChat.icon" [msgs]="currentChat.msgs"></app-chat-area>
+        <app-chat-area chatUid="-MLBFK-gOZAP6JH_cHoH" [title]="currentChat.title" [icon]="currentChat.icon" [msgs]="currentChat.msgs"></app-chat-area>
     </div>
 </div>
 
