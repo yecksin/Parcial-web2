@@ -4,7 +4,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { ChatService } from 'src/app/shared/services/chat/chat.service';
 import { ChatI } from './interfaces/ChatI';
 import { MessageI } from './interfaces/MessageI';
-
+import {MatDialog} from '@angular/material/dialog';
+import { AgregarContactoComponent } from '../modales/agregar-contacto/agregar-contacto.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -56,7 +57,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     msgs: []
   };
 
-  constructor(public authService: AuthService, public chatService: ChatService) {}
+  constructor(
+    public authService: AuthService,
+     public chatService: ChatService,
+     public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initChat();
@@ -111,6 +115,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   openDropDown(DropDownId){
     document.getElementById(DropDownId).classList.toggle("is-active");
     // document.getElementById(DropDownId).classList.toggle("animate__zoomIn");
+  }
+
+  openDialog() {
+    this.dialog.open(AgregarContactoComponent);
   }
 
 }

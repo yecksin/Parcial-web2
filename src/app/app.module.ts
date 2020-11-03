@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+   
   ],
   imports: [
     BrowserModule,

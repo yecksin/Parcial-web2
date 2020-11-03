@@ -39,6 +39,12 @@
                                   Crear una sala
                                 </a>
 
+                                <a href="#" class="dropdown-item" (click)="openDialog()">
+                                  Agregar Usuarios
+                                </a>
+
+                                <button mat-raised-button (click)="openDialog()">Pick one</button>
+                                <button mat-menu-item (click)="openDialog()">Item 2</button>
                                 <!-- <hr class="dropdown-divider"> -->
                                 <a href="#" (click)="openModal('perfil')" class="dropdown-item">
                                   Perfil

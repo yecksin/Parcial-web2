@@ -12,6 +12,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  currentUid='';
   userData ={
     name:""
   };
@@ -30,6 +31,7 @@ export class AuthService {
     this.user$.subscribe(resp => {
       // console.log("estado");
       if(resp != null){
+        this.currentUid= resp.uid;
         this.getUserData(resp.uid);
       }
       // console.log(resp);
