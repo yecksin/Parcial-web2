@@ -9,14 +9,20 @@ import { User } from 'firebase/app';
 import * as bulmaToast from "bulma-toast";
 import { Observable, of } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-  currentUid='';
-  userData ={
-    name:""
+  currentUid = "";
+  currentUser:any;
+  userData = {
+    email: "",
+    username: "",
+    name: "",
+    lname: "",
+    phoneCode: "",
+    phone: "",
   };
-  public user: User
+  public user: User;
   logueado = false;
   public user$: Observable<User>;
   constructor(
@@ -28,20 +34,15 @@ export class AuthService {
   }
   subido() {
     this.user$ = this._afAuth.authState;
-    this.user$.subscribe(resp => {
+    this.user$.subscribe((resp) => {
       // console.log("estado");
-      if(resp != null){
-        this.currentUid= resp.uid;
+      if (resp != null) {
+        this.currentUid = resp.uid;
         this.getUserData(resp.uid);
       }
       // console.log(resp);
       // console.log(resp.uid);
-
-      
-
-
-
-    })
+    });
   }
   tostada(menError) {
     let mensaje;
@@ -69,7 +70,7 @@ export class AuthService {
         break;
       }
       default: {
-        mensaje = "Error"
+        mensaje = "Error";
         break;
       }
     }
@@ -80,49 +81,46 @@ export class AuthService {
       message: mensaje,
       position: "top-center",
       type: "is-success",
-      duration: 5000
+      duration: 5000,
     });
-
   }
   async login(email: string, password: string) {
-
     if (isNaN(Number(email))) {
       console.log(email + ": Login con email");
 
       try {
         console.log("ingresando login y pass");
-        const result = await this._afAuth.signInWithEmailAndPassword(email, password);
-        
+        const result = await this._afAuth.signInWithEmailAndPassword(
+          email,
+          password
+        );
+
         // this.userData = result;
         console.log("User Data");
         console.log(this.userData);
 
         if (result.user) {
-          this.router.navigate(['/']);
+          this.router.navigate(["/"]);
         }
         // return result
       } catch (error) {
         console.log(error);
         this.tostada(error.code);
-
       }
-
     } else {
       console.log("Login con numero de telefono");
       this.getEmailToLogin(Number(email), password);
-
     }
-
   }
 
   async register(userForm) {
-    const {
-      email,
-      password
-    } = userForm.value;
+    const { email, password } = userForm.value;
     // console.log(userForm.value);
     try {
-      const result = await this._afAuth.createUserWithEmailAndPassword(email, password);
+      const result = await this._afAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
       if (result) {
         console.log("usuario creado correctamente!!");
         console.log(result.user.uid);
@@ -143,7 +141,7 @@ export class AuthService {
     try {
       await this._afAuth.signOut();
       console.log("sesion cerrada");
-      this.router.navigate(['/login']);
+      this.router.navigate(["/login"]);
     } catch (error) {
       console.log(error);
     }
@@ -157,18 +155,26 @@ export class AuthService {
     } else {
       this.logueado = false;
     }
-    // return 
+    // return
   }
   getUserData(uid) {
-    let itemRef1 = this.db.object('users/'+uid);
-    itemRef1.snapshotChanges().subscribe(action => {
+    let itemRef1 = this.db.object("users/" + uid);
+    itemRef1.snapshotChanges().subscribe((action) => {
       console.log(action.type);
       console.log(action.key);
-      console.log('Tiempo real', action.payload.val());
-      this.userData.name=action.payload.val()['name'];
-
+      console.log("Tiempo real", action.payload.val());
+      this.currentUser=action.payload.val();
+      this.currentUser.uid=action.key;
+      
+      this.userData.username= action.payload.val()["username"];
+      this.userData.name = action.payload.val()["name"];
+      this.userData.lname= action.payload.val()["lname"];
+      this.userData.phoneCode= action.payload.val()["phoneCode"];
+      this.userData.phone= action.payload.val()["phone"];
+      console.log("USer data");
+      console.log(this.userData);
+      console.log(this.currentUser);
     });
-
   }
   pushInfoUser(userForm, uid) {
     const {
@@ -180,23 +186,22 @@ export class AuthService {
       // password,
       phone,
     } = userForm.value;
-    this.db.database.ref('users/' + uid).update({
-      email,
-      username,
-      name,
-      lname,
-      phoneCode,
-      // password,
-      phone
-
-    }).then(() => {
-
-    });
+    this.db.database
+      .ref("users/" + uid)
+      .update({
+        email,
+        username,
+        name,
+        lname,
+        phoneCode,
+        // password,
+        phone,
+      })
+      .then(() => {});
   }
 
-
   getEmailToLogin(phone, password) {
-    let itemRef1 = this.db.object('users');
+    let itemRef1 = this.db.object("users");
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
       for (let k in action.payload.val()) {
         if (action.payload.val()[k].phone == phone) {
@@ -207,5 +212,4 @@ export class AuthService {
       }
     });
   }
-
 }

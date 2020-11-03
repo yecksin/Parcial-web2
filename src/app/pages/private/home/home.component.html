@@ -89,7 +89,7 @@
         <div class="inboxChat">
             <app-inbox-chat *ngFor="let user of _users.chats; let i = index" (click)="onSelectInbox(i)" 
             profilePic="/assets/img/ppRightBar.png" 
-            [name]="user.chatUid" 
+            [name]="user.customName" 
             msgTime="11:13" 
             msgPreview="nada..." 
             [isRead]="true" >

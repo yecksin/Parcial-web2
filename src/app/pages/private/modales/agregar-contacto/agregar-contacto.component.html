@@ -3,7 +3,7 @@
 <mat-list role="list">
     <mat-list-item *ngFor="let user of _usersList.usuarios" role="listitem">{{user.name}}
         <span class="example-spacer"></span>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUid)" >chat</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUser)" >chat</mat-icon>
         <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario()" >person_add</mat-icon>
     </mat-list-item>
   </mat-list>

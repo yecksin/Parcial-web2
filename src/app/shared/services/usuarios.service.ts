@@ -35,17 +35,17 @@ export class UsuariosService {
   }
 
 
-  crearChat(user,currentUid) {
-    console.log("mi uid ",currentUid);
-console.log(user);
+  crearChat(userAdd,currentUser) {
+    console.log("mi uid ",currentUser.uid);
+console.log(userAdd);
     this.db.database.ref('chats').push({
-      titulo: "chat con "+user.name,
+      titulo: "chat con "+userAdd.name,
      
     }).then(resp => {
       
       console.log(resp['path']['pieces_'][1]);
       
-      this.pushChatUid(currentUid,user.key,resp['path']['pieces_'][1]);
+      this.pushChatUid(currentUser,userAdd,resp['path']['pieces_'][1]);
     }).catch(e => {
       console.log("Hubo un error");
       console.log(e);
@@ -53,19 +53,23 @@ console.log(user);
 
   }
 
-  pushChatUid(uidCurrent,uidNewUser,uidChat){
-
-    this.db.database.ref('users/' + uidCurrent+'/uidChats').push({
+  pushChatUid(currentUser,userAdd,uidChat){
+    console.log("numeros");
+    console.log(currentUser);
+    console.log(userAdd);
+    this.db.database.ref('users/' + currentUser.uid+'/uidChats').push({
       chatUid:uidChat,
-      person:uidNewUser
+      person:userAdd.key,
+      customName:userAdd.phoneCode+' '+ userAdd.phone
 
     }).then(() => {
 
     });
 
-    this.db.database.ref('users/' + uidNewUser+'/uidChats').push({
+    this.db.database.ref('users/' + userAdd.key+'/uidChats').push({
       chatUid:uidChat,
-      person:uidCurrent
+      person:currentUser.uid,
+      customName: currentUser.phoneCode+' '+ currentUser.phone
 
     }).then(() => {
 
