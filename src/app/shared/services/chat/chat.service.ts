@@ -2,7 +2,9 @@ import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MessageI } from 'src/app/pages/private/home/interfaces/MessageI';
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +12,11 @@ export class ChatService {
 
   socket: any;
 
-  constructor() { }
+  constructor(
+    public _afAuth: AngularFireAuth,
+    private router: Router,
+    private db: AngularFireDatabase
+  ) { }
 
   connect() {
     return new Observable(observer => {
@@ -36,6 +42,21 @@ export class ChatService {
   disconnect() {
     this.socket.disconnect();
   }
+
+
+  getChat(uidChat){
+    let itemRef1 = this.db.object('chats'+uidChat);
+    let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
+          console.log("Datos " + action.payload.val());
+          subscription.unsubscribe();
+    });
+  }
+
+
+
+
+
+
 
 
 }
