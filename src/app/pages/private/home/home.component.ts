@@ -6,6 +6,7 @@ import { ChatI } from './interfaces/ChatI';
 import { MessageI } from './interfaces/MessageI';
 import {MatDialog} from '@angular/material/dialog';
 import { AgregarContactoComponent } from '../modales/agregar-contacto/agregar-contacto.component';
+import { UsuariosService } from '../../../shared/services/usuarios.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -60,10 +61,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
      public chatService: ChatService,
-     public dialog: MatDialog) {}
+     public dialog: MatDialog,
+     public _users:UsuariosService
+     ) {}
 
   ngOnInit(): void {
     this.initChat();
+    this._users.getChatsList(this.authService.currentUid);
   }
 
   ngOnDestroy(): void {

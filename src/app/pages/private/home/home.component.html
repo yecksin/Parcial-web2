@@ -87,7 +87,13 @@
             </div>
         </div>
         <div class="inboxChat">
-            <app-inbox-chat *ngFor="let inbox of chats; let i = index" (click)="onSelectInbox(i)" [profilePic]="inbox.icon" [name]="inbox.title" [msgTime]="inbox.lastMsg" [msgPreview]="inbox.msgPreview" [isRead]="inbox.isRead" ></app-inbox-chat>
+            <app-inbox-chat *ngFor="let user of _users.chats; let i = index" (click)="onSelectInbox(i)" 
+            profilePic="/assets/img/ppRightBar.png" 
+            [name]="user.chatUid" 
+            msgTime="11:13" 
+            msgPreview="nada..." 
+            [isRead]="true" >
+          </app-inbox-chat>
         </div>
     </div>
     <div class="rightBigContainer">

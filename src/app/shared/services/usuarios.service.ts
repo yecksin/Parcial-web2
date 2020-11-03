@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 })
 export class UsuariosService {
   usuarios= [];
+  chats=[];
   constructor(
     public _afAuth: AngularFireAuth,
     private router: Router,
@@ -55,14 +56,16 @@ console.log(user);
   pushChatUid(uidCurrent,uidNewUser,uidChat){
 
     this.db.database.ref('users/' + uidCurrent+'/uidChats').push({
-      chatUid:uidChat
+      chatUid:uidChat,
+      person:uidNewUser
 
     }).then(() => {
 
     });
 
     this.db.database.ref('users/' + uidNewUser+'/uidChats').push({
-      chatUid:uidChat
+      chatUid:uidChat,
+      person:uidCurrent
 
     }).then(() => {
 
@@ -71,6 +74,21 @@ console.log(user);
 
   }
 
-
+  getChatsList(currentUid){
+    console.log("getChatsList()");
+    this.chats= [];
+    let itemRef1 = this.db.object('users/'+currentUid+'/uidChats');
+    let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
+         
+          
+          for (let k  in action.payload.val()) {
+          let chat = action.payload.val()[k];
+          chat.key=k;
+          this.chats.push(chat);
+          }
+          console.log(this.chats);
+          subscription.unsubscribe();
+    });
+  }
 
 }
