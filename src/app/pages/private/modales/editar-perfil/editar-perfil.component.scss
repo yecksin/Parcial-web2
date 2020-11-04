@@ -1,0 +1,30 @@
+.colum{
+    display: flex;
+    flex-direction: column;
+}
+
+.imagen{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+       
+    img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    }
+}
+  
+.field{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box_nombre{
+    padding-top: 10px;
+}
+
+.info{
+    padding-top: 40px;
+}
