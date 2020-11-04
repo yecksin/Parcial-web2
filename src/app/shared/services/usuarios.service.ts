@@ -40,7 +40,9 @@ export class UsuariosService {
     console.log("mi uid ",currentUser.uid);
     console.log(userAdd);
     this.db.database.ref('chats').push({
-      titulo: "chat con "+userAdd.name,
+      titulo: {
+        msg:'Chat Creado'
+      },
      
     }).then(resp => {
       
@@ -109,7 +111,11 @@ export class UsuariosService {
           //   // chatsCrudos.push(chat);
           // }
           // chat.key=k;
-              chatsCrudos.push(chat1.msg);
+          console.log("llave: "+j);
+          if(j != "titulo"){
+            chatsCrudos.push(chat1.msg);
+          }
+              
             }
           }
           console.log("****** chat crudos ******");
