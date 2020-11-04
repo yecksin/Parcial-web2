@@ -33,6 +33,7 @@ export class ChatAreaComponent implements OnInit {
       isMe: true,
       time: this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
       isRead: false,
+      enviadoPor: this._auth.currentUid,
       owner: this.title,
       chatUid : this._users.chatUid
     }

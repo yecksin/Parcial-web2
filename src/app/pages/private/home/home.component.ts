@@ -22,35 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       msgs: undefined
   };
 
-  chats: Array<ChatI> = [
-    {
-      title: "Santi",
-      icon: "/assets/img/ppRightBar.png",
-      isRead: true,
-      msgPreview: "entonces ando usando fotos reales hahaha",
-      lastMsg: "11:13",
-      msgs: [
-        {content: "Lorem ipsum dolor amet",chatUid:'XXX', isRead:true, isMe:true, time:"7:24"},
-        {content: "Qué?",chatUid:'XXX', isRead:true, isMe:false, time:"7:25"},
-      ]
-    },
-    {
-      title: "Pablo Bejarano",
-      icon: "/assets/img/ppInbox.png",
-      isRead: true,
-      msgPreview: "Estrenando componente",
-      lastMsg: "18:30",
-      msgs: []
-    },
-    {
-      title: "Pablo Bejarano 2",
-      icon: "/assets/img/ppInbox.png",
-      isRead: true,
-      msgPreview: "Nice front 😎",
-      lastMsg: "23:30",
-      msgs: []
-    },
-  ];
+  
 
   currentChat = {
     title: "",
@@ -76,11 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   initChat() {
-    if (this.chats.length > 0) {
-      this.currentChat.title = this.chats[0].title;
-      this.currentChat.icon = this.chats[0].icon;
-      this.currentChat.msgs = this.chats[0].msgs;
-    }
+
     console.log("init chat");
     this.currentChat.msgs = this._users.getChatsListEstrucutured();
     // this.currentChat.msgs = this._users.getChatsListEstrucutured();

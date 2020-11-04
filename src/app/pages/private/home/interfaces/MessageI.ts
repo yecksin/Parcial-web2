@@ -4,5 +4,6 @@ export interface MessageI{
     isRead: boolean
     owner?: string
     isMe: boolean
-    chatUid:string
+    chatUid:string,
+    enviadoPor:string
 }
