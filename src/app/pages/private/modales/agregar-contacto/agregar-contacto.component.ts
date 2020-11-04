@@ -15,7 +15,7 @@ export class AgregarContactoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._usersList.getListUsers();
+    this._usersList.getListUsers(this._auth.currentUid);
   }
   
   

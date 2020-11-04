@@ -15,16 +15,20 @@ export class UsuariosService {
     private db: AngularFireDatabase
   ) { }
 
-  getListUsers(){
+  getListUsers(currentUser){
     this.usuarios= [];
     let itemRef1 = this.db.object('users');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
-         
+         console.log("Get list users");
           
           for (let k  in action.payload.val()) {
           let user = action.payload.val()[k];
           user.key=k;
-          this.usuarios.push(user);
+          console.log(k);
+          if (k!=currentUser) {
+            this.usuarios.push(user);
+          }
+          
           }
           console.log(this.usuarios);
           subscription.unsubscribe();
@@ -82,7 +86,7 @@ export class UsuariosService {
   }
 
   getChatsList(currentUid){
-    console.log("*****************************getChatsList()*******************************");
+    // console.log("*****************************getChatsList()*******************************");
     
     let itemRef1 = this.db.object('users/'+currentUid+'/uidChats');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
@@ -111,15 +115,15 @@ export class UsuariosService {
           //   // chatsCrudos.push(chat);
           // }
           // chat.key=k;
-          console.log("llave: "+j);
+          // console.log("llave: "+j);
           if(j != "titulo"){
             chatsCrudos.push(chat1.msg);
           }
               
             }
           }
-          console.log("****** chat crudos ******");
-          console.log(chatsCrudos);
+          // console.log("****** chat crudos ******");
+          // console.log(chatsCrudos);
           subscription.unsubscribe();
     });
     return chatsCrudos;
