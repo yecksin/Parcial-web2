@@ -11,13 +11,16 @@ import { AgregarContactoComponent } from '../modales/agregar-contacto/agregar-co
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatInputModule} from '@angular/material/input';
+import { FiltroBuscarUsuarioPipe } from '../../../shared/pipes/filtro-buscar-usuario.pipe';
 @NgModule({
   declarations: [
     HomeComponent,
     InboxChatComponent,
     ChatAreaComponent,
     ChatMessageComponent,
-    AgregarContactoComponent
+    AgregarContactoComponent,
+    FiltroBuscarUsuarioPipe,
   ],
   entryComponents:[AgregarContactoComponent],
   imports: [
@@ -26,9 +29,12 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDialogModule,
     MatListModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule
     
 
   ],
 })
 export class HomeModule { }
+
+

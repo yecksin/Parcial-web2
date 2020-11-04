@@ -8,7 +8,7 @@ import { AuthService } from '../../../../shared/services/auth.service';
   styleUrls: ['./agregar-contacto.component.scss']
 })
 export class AgregarContactoComponent implements OnInit {
-
+  textoBuscar='';
   constructor(
     public _usersList: UsuariosService,
     public _auth:AuthService

@@ -1,7 +1,19 @@
-<h2 mat-dialog-title>Agregar Usuario</h2>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    
+
+    <input type="tel" matInput placeholder="31711111" [(ngModel)]="textoBuscar" name="a">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
 <mat-dialog-content class="mat-typography">
+
+
+
+
+
 <mat-list role="list">
-    <mat-list-item *ngFor="let user of _usersList.usuarios" role="listitem">{{user.name}}
+    <mat-list-item *ngFor="let user of _usersList.usuarios |filtroBuscarUsuario:textoBuscar" role="listitem">{{user.name}}
         <span class="example-spacer"></span>
         <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUser)" >chat</mat-icon>
         <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario()" >person_add</mat-icon>
