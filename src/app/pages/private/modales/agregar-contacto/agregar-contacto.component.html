@@ -13,10 +13,10 @@
 
 
 <mat-list role="list">
-    <mat-list-item *ngFor="let user of _usersList.usuarios |filtroBuscarUsuario:textoBuscar" role="listitem">{{user.name}}
+    <mat-list-item *ngFor="let user of _usersList.usuarios |filtroBuscarUsuario:textoBuscar" role="listitem">{{user.email}} - {{user.phone}}
         <span class="example-spacer"></span>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUser)" >chat</mat-icon>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario()" >person_add</mat-icon>
+        <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUser)" >chat</mat-icon>
+        <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario()" >person_add</mat-icon>
     </mat-list-item>
   </mat-list>
 </mat-dialog-content>

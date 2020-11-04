@@ -12,7 +12,8 @@ export class FiltroBuscarUsuarioPipe implements PipeTransform {
 
     texto = texto.toLocaleLowerCase();
     return arreglo.filter(item=>{
-      return item.email.includes(texto)
+      let contcat =item.email+item.phone;
+      return contcat.includes(texto)
     })
 
   }
