@@ -44,7 +44,7 @@ export class UsuariosService {
     let yaCreado=false;
     // console.log(this.chats);
     this.chats.forEach(resp=>{
-      console.log(resp.person+' ' +userAdd.key);
+      //console.log(resp.person+' ' +userAdd.key);
       if (resp.person == userAdd.key) {
         console.log("hay uno igual");
         yaCreado=true;
@@ -55,7 +55,7 @@ export class UsuariosService {
       console.log("no se crea el chat");
       
     }else{
-          console.log("mi uid ",currentUser.uid);
+          // console.log("mi uid ",currentUser.uid);
     console.log(userAdd);
     this.db.database.ref('chats').push({
       titulo: {
