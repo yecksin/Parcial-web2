@@ -17,7 +17,7 @@ export class ChatAreaComponent implements OnInit {
   @Input() msgs: Array<MessageI> = []
 
   msg: string;
-
+  date = new Date();
   constructor(
     public chatService: ChatService,
     public _auth:AuthService,
@@ -31,7 +31,7 @@ export class ChatAreaComponent implements OnInit {
     const msg: MessageI = {
       content: this.msg,
       isMe: true,
-      time: "8:58",
+      time: this.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
       isRead: false,
       owner: this.title,
       chatUid : this._users.chatUid
