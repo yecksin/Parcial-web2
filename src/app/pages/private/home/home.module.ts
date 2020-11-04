@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import { FiltroBuscarUsuarioPipe } from '../../../shared/pipes/filtro-buscar-usuario.pipe';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -30,7 +31,8 @@ import { FiltroBuscarUsuarioPipe } from '../../../shared/pipes/filtro-buscar-usu
     MatListModule,
     MatIconModule,
     MatMenuModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
     
 
   ],
