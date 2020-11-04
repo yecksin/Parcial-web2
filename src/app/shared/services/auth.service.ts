@@ -160,9 +160,9 @@ export class AuthService {
   getUserData(uid) {
     let itemRef1 = this.db.object("users/" + uid);
     itemRef1.snapshotChanges().subscribe((action) => {
-      console.log(action.type);
-      console.log(action.key);
-      console.log("Tiempo real", action.payload.val());
+      // console.log(action.type);
+      // console.log(action.key);
+      // console.log("Tiempo real", action.payload.val());
       this.currentUser=action.payload.val();
       this.currentUser.uid=action.key;
       
@@ -171,9 +171,9 @@ export class AuthService {
       this.userData.lname= action.payload.val()["lname"];
       this.userData.phoneCode= action.payload.val()["phoneCode"];
       this.userData.phone= action.payload.val()["phone"];
-      console.log("USer data");
-      console.log(this.userData);
-      console.log(this.currentUser);
+      // console.log("USer data");
+      // console.log(this.userData);
+      // console.log(this.currentUser);
     });
   }
   pushInfoUser(userForm, uid) {

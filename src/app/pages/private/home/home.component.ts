@@ -83,12 +83,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     this.currentChat.msgs = this._users.getChatsListEstrucutured();
     this.subscriptionList.connection = this.chatService.connect().subscribe(_ => {
-      console.log("Nos conectamos");
+      // console.log("Nos conectamos");
       this.subscriptionList.msgs = this.chatService.getNewMsgs().subscribe((msg: MessageI) => {
         msg.isMe = this.currentChat.title === msg.owner ? true : false;
-        console.log("Mensaje a array");
+        // console.log("Mensaje a array");
         this.currentChat.msgs.push(msg);
-         console.log( this.currentChat.msgs);
+        //  console.log( this.currentChat.msgs);
       });
     });
   }
