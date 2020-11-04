@@ -103,13 +103,14 @@ export class UsuariosService {
          
           
           for (let k  in action.payload.val()) {
-          let chat = action.payload.val()[k];
-          // for (let j  in action.payload.val()[k]) {
-          //   let chat = action.payload.val()[k][j]
+            let chat = action.payload.val()[k];
+            for (let j  in chat) {
+              let chat1 = chat[j];
           //   // chatsCrudos.push(chat);
           // }
           // chat.key=k;
-          chatsCrudos.push(chat);
+              chatsCrudos.push(chat1.msg);
+            }
           }
           console.log("****** chat crudos ******");
           console.log(chatsCrudos);
