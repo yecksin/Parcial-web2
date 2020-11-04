@@ -83,18 +83,18 @@ export class UsuariosService {
 
   getChatsList(currentUid){
     console.log("*****************************getChatsList()*******************************");
-    this.chats= [];
+    
     let itemRef1 = this.db.object('users/'+currentUid+'/uidChats');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
          
-          
+      this.chats= [];
           for (let k  in action.payload.val()) {
           let chat = action.payload.val()[k];
           chat.key=k;
           this.chats.push(chat);
           }
           console.log(this.chats);
-          subscription.unsubscribe();
+          // subscription.unsubscribe();
     });
   }
 
