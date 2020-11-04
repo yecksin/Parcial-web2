@@ -38,7 +38,7 @@ export class UsuariosService {
 
   crearChat(userAdd,currentUser) {
     console.log("mi uid ",currentUser.uid);
-console.log(userAdd);
+    console.log(userAdd);
     this.db.database.ref('chats').push({
       titulo: "chat con "+userAdd.name,
      
@@ -80,7 +80,7 @@ console.log(userAdd);
   }
 
   getChatsList(currentUid){
-    console.log("getChatsList()");
+    console.log("*****************************getChatsList()*******************************");
     this.chats= [];
     let itemRef1 = this.db.object('users/'+currentUid+'/uidChats');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
@@ -94,6 +94,28 @@ console.log(userAdd);
           console.log(this.chats);
           subscription.unsubscribe();
     });
+  }
+
+  getChatsListEstrucutured(){
+    let chatsCrudos= [];
+    let itemRef1 = this.db.object('chats');
+    let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
+         
+          
+          for (let k  in action.payload.val()) {
+          let chat = action.payload.val()[k];
+          // for (let j  in action.payload.val()[k]) {
+          //   let chat = action.payload.val()[k][j]
+          //   // chatsCrudos.push(chat);
+          // }
+          // chat.key=k;
+          chatsCrudos.push(chat);
+          }
+          console.log("****** chat crudos ******");
+          console.log(chatsCrudos);
+          subscription.unsubscribe();
+    });
+    return []
   }
 
 }

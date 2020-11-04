@@ -35,8 +35,22 @@ export class ChatService {
     });
   }
 
-  sendMsg(msg: MessageI) {
+  sendMsg(msg: MessageI,chatUid) {
     this.socket.emit('newMsg', msg);
+    this.saveMsg(msg,chatUid)
+  }
+
+  saveMsg(msg,chatUid){
+    this.db.database.ref('chats/'+chatUid).push({
+      msg,
+     
+    }).then(resp => {
+      
+
+    }).catch(e => {
+      console.log("Hubo un error");
+      console.log(e);
+    });
   }
 
   disconnect() {

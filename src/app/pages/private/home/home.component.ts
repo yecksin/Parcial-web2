@@ -81,11 +81,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.currentChat.icon = this.chats[0].icon;
       this.currentChat.msgs = this.chats[0].msgs;
     }
+    this.currentChat.msgs = this._users.getChatsListEstrucutured();
     this.subscriptionList.connection = this.chatService.connect().subscribe(_ => {
       console.log("Nos conectamos");
       this.subscriptionList.msgs = this.chatService.getNewMsgs().subscribe((msg: MessageI) => {
         msg.isMe = this.currentChat.title === msg.owner ? true : false;
+        console.log("Mensaje a array");
         this.currentChat.msgs.push(msg);
+         console.log( this.currentChat.msgs);
       });
     });
   }
@@ -93,6 +96,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onSelectInbox(chatUid) {
     console.log(chatUid);
     this._users.chatUid = chatUid;
+    console.log(this._users.chats);
     // this.currentChat.title = this.chats[index].title;
     //   this.currentChat.icon = this.chats[index].icon;
     //   this.currentChat.msgs = this.chats[index].msgs;

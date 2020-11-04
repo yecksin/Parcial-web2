@@ -33,7 +33,7 @@ export class ChatAreaComponent implements OnInit {
       owner: this.title,
       chatUid : this._users.chatUid
     }
-    this.chatService.sendMsg(msg);
+    this.chatService.sendMsg(msg,this._users.chatUid);
     this.msg = "";
   }
 }
