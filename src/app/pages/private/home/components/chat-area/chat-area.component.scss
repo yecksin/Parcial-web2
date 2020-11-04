@@ -71,6 +71,7 @@ $titleFont: sfProTextMedium;
     background: #E5DDD5;
     padding-top: 20px;
     overflow: auto;
+    scroll-behavior: smooth;
     .chatDateContainer {
         height: 32px;
         margin: 12px 0;
@@ -144,4 +145,13 @@ $titleFont: sfProTextMedium;
         padding: 5px 10px;
         cursor: pointer;
     }
+}
+
+
+.float_bt_arrow{
+    z-index: 100;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 90px 10px;
 }

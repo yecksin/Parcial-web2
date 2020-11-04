@@ -15,6 +15,11 @@
     </div>
 </div>
 <div class="chat">
+    <a href="#finChat" class="float_bt_arrow">
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+    </a>
     <!--div class="chatDateContainer">
         <div class="chatDate">TODAY</div>
     </div-->
@@ -27,6 +32,7 @@
      [isRead] = "msg.isRead"
      [enviadoPor]="msg.enviadoPor"
      ></app-chat-message>
+     <div class="finChat" id="finChat"></div>
 </div>
 <div class="sendMessageForm"  *ngIf="_users.chatUid">
     <div class="leftMessageFormIcons">
