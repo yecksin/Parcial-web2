@@ -2,7 +2,7 @@
   <mat-form-field class="example-full-width">
     
 
-    <input type="tel" matInput placeholder="31711111" [(ngModel)]="textoBuscar" name="a">
+    <input type="tel" matInput placeholder="Buscar usuario por email o numero de telefono" [(ngModel)]="textoBuscar" name="a">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 </form>
@@ -19,6 +19,7 @@
         <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario()" >person_add</mat-icon>
     </mat-list-item>
   </mat-list>
+  <p *ngIf="(( _usersList.usuarios | filtroBuscarUsuario:textoBuscar).length === 0)&&textoBuscar ">Usuario no encontrado</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
