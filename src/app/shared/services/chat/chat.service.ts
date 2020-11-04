@@ -36,8 +36,11 @@ export class ChatService {
   }
 
   sendMsg(msg: MessageI,chatUid) {
-    this.socket.emit('newMsg', msg);
-    this.saveMsg(msg,chatUid)
+    if(chatUid){
+      this.socket.emit('newMsg', msg);
+      this.saveMsg(msg,chatUid)
+    }
+
   }
 
   saveMsg(msg,chatUid){
