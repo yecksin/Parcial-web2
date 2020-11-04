@@ -17,6 +17,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#919191" d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"></path></svg>
                         
                         <!-- -----------CERRAR SESION DROPDOWN-----------  -->
+                        
                         <div class="dropdown " id="dropdown">
                             <div class="dropdown-trigger">
                               <!-- <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
@@ -26,49 +27,65 @@
                                 </span>
                               </button> -->
                             </div>
+
+
+                            
                             <div class="dropdown-menu" id="dropdown-menu2" role="menu">
                               <div class="dropdown-content">
 
+                                <button mat-button [matMenuTriggerFor]="beforeMenu"></button>
+                                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                                </mat-menu>
+                                
+                                <button mat-menu-item >Nuevo grupo</button>
+                                <button mat-menu-item >Crear una sala</button>
+                                <button mat-menu-item  (click)="openDialog()">Agregar Usuarios</button>
+                                <button mat-menu-item  (click)="openModal('perfil')">Perfil</button>
+                                <button mat-menu-item >Archivados</button>
+                                <button mat-menu-item >Destacados</button>
+                                <button mat-menu-item >Configuración</button>
+                                <button mat-menu-item  (click)="authService.logout()">Cerrar sesión</button>
+                     
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item">
+                                <!--<a href="#" class="dropdown-item">
                                   Nuevo grupo
-                                </a>
+                                </a>-->
 
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item">
+                                <!--<a href="#" class="dropdown-item">
                                   Crear una sala
                                 </a>
 
                                 <a href="#" class="dropdown-item" (click)="openDialog()">
                                   Agregar Usuarios
-                                </a>
+                                </a>-->
 
-                                <button mat-raised-button (click)="openDialog()">Pick one</button>
-                                <button mat-menu-item (click)="openDialog()">Item 2</button>
+                                <!-- <button mat-raised-button (click)="openDialog()">Pick one</button> -->
+                                <!--<button mat-menu-item (click)="openDialog()">Item 2</button>-->
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" (click)="openModal('perfil')" class="dropdown-item">
+                                <!--<a href="#" (click)="openModal('perfil')" class="dropdown-item">
                                   Perfil
-                                </a>
+                                </a>-->
 
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item">
+                                <!--<a href="#" class="dropdown-item">
                                   Archivados
-                                </a>
+                                </a>-->
 
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item">
+                                <!--<a href="#" class="dropdown-item">
                                   Destacados
-                                </a>
+                                </a>-->
 
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item">
+                                <!--<a href="#" class="dropdown-item">
                                   Configuración
-                                </a>
+                                </a>-->
 
                                 <!-- <hr class="dropdown-divider"> -->
-                                <a href="#" class="dropdown-item " (click)="authService.logout()">
+                                <!--<a href="#" class="dropdown-item " (click)="authService.logout()">
                                   Cerrar sesión
-                                </a>
+                                </a> -->
 
                               </div>
                             </div>

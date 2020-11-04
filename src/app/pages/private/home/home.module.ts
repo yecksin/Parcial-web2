@@ -10,6 +10,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AgregarContactoComponent } from '../modales/agregar-contacto/agregar-contacto.component';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -24,7 +25,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatDialogModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
     
 
   ],
