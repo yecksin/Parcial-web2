@@ -9,6 +9,7 @@ export class UsuariosService {
   usuarios= [];
   chats=[];
   chatUid='';
+  chatsCrudosAux=[];
   constructor(
     public _afAuth: AngularFireAuth,
     private router: Router,
@@ -102,7 +103,7 @@ export class UsuariosService {
   }
 
   getChatsList(currentUid){
-    // console.log("**********getChatsList()**********");
+    console.log("**********getChatsList()**********");
     
     let itemRef1 = this.db.object('users/'+currentUid+'/uidChats');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
@@ -119,6 +120,7 @@ export class UsuariosService {
   }
 
   getChatsListEstrucutured(){
+    console.log("chats unidos");
     let chatsCrudos= [];
     let itemRef1 = this.db.object('chats');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
@@ -142,6 +144,9 @@ export class UsuariosService {
           // console.log(chatsCrudos);
           subscription.unsubscribe();
     });
+    this.chatsCrudosAux=chatsCrudos;
+    console.log("Todos los chats");
+    console.log(this.chatsCrudosAux);
     return chatsCrudos;
   }
 

@@ -15,6 +15,8 @@ import {MatInputModule} from '@angular/material/input';
 import { FiltroBuscarUsuarioPipe } from '../../../shared/pipes/filtro-buscar-usuario.pipe';
 import {MatButtonModule} from '@angular/material/button';
 import { EditarPerfilComponent } from '../modales/editar-perfil/editar-perfil.component';
+import { FiltroUsuarioChatPipe } from '../../../shared/pipes/filtro-usuario-chat.pipe';
+import { FiltroBuscarMensajesPipe } from '../../../shared/pipes/filtro-buscar-mensajes.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { EditarPerfilComponent } from '../modales/editar-perfil/editar-perfil.co
     AgregarContactoComponent,
     FiltroBuscarUsuarioPipe,
     EditarPerfilComponent,
+    FiltroUsuarioChatPipe,
+    FiltroBuscarMensajesPipe,
   ],
   entryComponents:[AgregarContactoComponent,EditarPerfilComponent],
   imports: [

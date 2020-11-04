@@ -14,7 +14,7 @@ import { EditarPerfilComponent } from '../modales/editar-perfil/editar-perfil.co
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
+  textoBuscar='';
   subscriptionList: {
     connection: Subscription,
     msgs: Subscription

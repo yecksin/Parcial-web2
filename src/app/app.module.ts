@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { FiltroUsuarioChatPipe } from './shared/pipes/filtro-usuario-chat.pipe';
+import { FiltroBuscarMensajesPipe } from './shared/pipes/filtro-buscar-mensajes.pipe';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    
+   
     
     
    
