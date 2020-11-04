@@ -138,6 +138,7 @@ $titleFont: sfProTextMedium;
             width: 100%;
             height: calc(100% - 108px);
             background: white;
+            overflow: auto;
             .inboxChat1 {
                 width: 100%;
                 height: 72px;
