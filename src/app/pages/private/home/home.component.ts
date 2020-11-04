@@ -7,6 +7,7 @@ import { MessageI } from './interfaces/MessageI';
 import {MatDialog} from '@angular/material/dialog';
 import { AgregarContactoComponent } from '../modales/agregar-contacto/agregar-contacto.component';
 import { UsuariosService } from '../../../shared/services/usuarios.service';
+import { EditarPerfilComponent } from '../modales/editar-perfil/editar-perfil.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -101,6 +102,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   openDialog() {
     this.dialog.open(AgregarContactoComponent);
+  }
+
+  openDialogPerfil() {
+    this.dialog.open(EditarPerfilComponent);
   }
 
 }

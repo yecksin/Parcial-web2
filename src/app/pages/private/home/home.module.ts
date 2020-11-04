@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { InboxChatComponent } from './components/inbox-chat/inbox-chat.component';
 import { ChatAreaComponent } from './components/chat-area/chat-area.component';
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AgregarContactoComponent } from '../modales/agregar-contacto/agregar-contacto.component';
@@ -14,6 +14,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import { FiltroBuscarUsuarioPipe } from '../../../shared/pipes/filtro-buscar-usuario.pipe';
 import {MatButtonModule} from '@angular/material/button';
+import { EditarPerfilComponent } from '../modales/editar-perfil/editar-perfil.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,8 +24,9 @@ import {MatButtonModule} from '@angular/material/button';
     ChatMessageComponent,
     AgregarContactoComponent,
     FiltroBuscarUsuarioPipe,
+    EditarPerfilComponent,
   ],
-  entryComponents:[AgregarContactoComponent],
+  entryComponents:[AgregarContactoComponent,EditarPerfilComponent],
   imports: [
     CommonModule, FormsModule,
     MatFormFieldModule,
@@ -32,7 +35,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatMenuModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
     
 
   ],
