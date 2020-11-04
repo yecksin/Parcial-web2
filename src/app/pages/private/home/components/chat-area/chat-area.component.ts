@@ -18,8 +18,11 @@ export class ChatAreaComponent implements OnInit {
 
   msg: string;
 
-  constructor(public chatService: ChatService, public _auth:AuthService,
-    public _users:UsuariosService) { }
+  constructor(
+    public chatService: ChatService,
+    public _auth:AuthService,
+    public _users:UsuariosService
+    ) { }
 
   ngOnInit(): void {
   }
