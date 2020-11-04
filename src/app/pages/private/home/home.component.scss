@@ -119,27 +119,19 @@ $titleFont: sfProTextMedium;
             justify-content: center;
             flex-grow: 1;
             background: #F6F6F6;
+            .searchContact{
+                width: 95%;
+                height: 60%;
+                border-radius: 40px;
+                padding: 0 0 0 40px;
+                border: 0;
+            }
             .searchIcon {
                 width: 24px;
                 height: 24px;
                 left: 24px;
                 position: absolute;
                 cursor: pointer;
-            }
-            .searchBarText {
-                font-size: 13.5px;
-                position: absolute;
-                left: 77px;
-                color: #919191;
-                cursor: text;
-            }
-            .searchBar {
-                width: 95%;
-                height: 35px;
-                padding: 0 32px 0 65px;
-                background: white;
-                border-radius: 100px;
-                
             }
         }
         .inboxChat {
