@@ -41,7 +41,21 @@ export class UsuariosService {
 
 
   crearChat(userAdd,currentUser) {
-    console.log("mi uid ",currentUser.uid);
+    let yaCreado=false;
+    // console.log(this.chats);
+    this.chats.forEach(resp=>{
+      console.log(resp.person+' ' +userAdd.key);
+      if (resp.person == userAdd.key) {
+        console.log("hay uno igual");
+        yaCreado=true;
+      }
+    // console.log(resp.person);
+    })
+    if (yaCreado) {
+      console.log("no se crea el chat");
+      
+    }else{
+          console.log("mi uid ",currentUser.uid);
     console.log(userAdd);
     this.db.database.ref('chats').push({
       titulo: {
@@ -57,6 +71,8 @@ export class UsuariosService {
       console.log("Hubo un error");
       console.log(e);
     });
+    }
+
 
   }
 
@@ -86,7 +102,7 @@ export class UsuariosService {
   }
 
   getChatsList(currentUid){
-    // console.log("*****************************getChatsList()*******************************");
+    // console.log("**********getChatsList()**********");
     
     let itemRef1 = this.db.object('users/'+currentUid+'/uidChats');
     let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
@@ -122,7 +138,7 @@ export class UsuariosService {
               
             }
           }
-          // console.log("****** chat crudos ******");
+          // console.log("** chat crudos **");
           // console.log(chatsCrudos);
           subscription.unsubscribe();
     });
