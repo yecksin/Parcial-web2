@@ -116,7 +116,7 @@ export class UsuariosService {
           console.log(chatsCrudos);
           subscription.unsubscribe();
     });
-    return []
+    return chatsCrudos;
   }
 
 }
