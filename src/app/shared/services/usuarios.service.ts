@@ -81,12 +81,15 @@ if (currentUser.uidChats[k].person ==userAdd.key) {
       
       console.log(resp['path']['pieces_'][1]);
       
-      this.pushChatUid(currentUser,userAdd,resp['path']['pieces_'][1]);
+      this.pushChatUid2(currentUser,userAdd,resp['path']['pieces_'][1]);
     }).catch(e => {
       console.log("Hubo un error");
       console.log(e);
     });
+
     }
+
+    
   }
 
 
@@ -134,6 +137,32 @@ if (currentUser.uidChats[k].person ==userAdd.key) {
       chatUid:uidChat,
       person:userAdd.key,
       customName:userAdd.phoneCode+' '+ userAdd.phone
+
+    }).then(() => {
+
+    });
+
+    this.db.database.ref('users/' + userAdd.key+'/uidChats').push({
+      chatUid:uidChat,
+      person:currentUser.uid,
+      customName: currentUser.phoneCode+' '+ currentUser.phone
+
+    }).then(() => {
+
+    });
+
+
+  }
+
+
+  pushChatUid2(currentUser,userAdd,uidChat){
+    console.log("numeros");
+    console.log(currentUser);
+    console.log(userAdd);
+    this.db.database.ref('users/' + currentUser.uid+'/uidChats').push({
+      chatUid:uidChat,
+      person:userAdd.key,
+      customName:userAdd.name
 
     }).then(() => {
 

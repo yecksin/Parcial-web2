@@ -15,8 +15,8 @@
 <mat-list role="list">
     <mat-list-item *ngFor="let user of _usersList.usuarios |filtroBuscarUsuario:textoBuscar" role="listitem">{{user.email}} - {{user.phone}}
         <span class="example-spacer"></span>
-        <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUser)" >chat</mat-icon>
-        <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario(user,_auth.currentUser)" >person_add</mat-icon>
+        <mat-icon color="primary" mat-dialog-close aria-hidden="false" aria-label="Example home icon" (click)="_usersList.crearChat(user,_auth.currentUser)" >chat</mat-icon>
+        <mat-icon color="primary" mat-dialog-close aria-hidden="false" aria-label="Example home icon" (click)="_usersList.agregarUsuario(user,_auth.currentUser)" >person_add</mat-icon>
     </mat-list-item>
   </mat-list>
   <p *ngIf="(( _usersList.usuarios | filtroBuscarUsuario:textoBuscar).length === 0)&&textoBuscar ">Usuario no encontrado</p>
