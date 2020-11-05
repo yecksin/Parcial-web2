@@ -6,6 +6,11 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UsuariosService {
+  userAdduidACtual={
+    key:'',
+    name:''
+
+  };
   userAddCurrentData='';
   usuarios= [];
   chats=[];
@@ -26,12 +31,35 @@ export class UsuariosService {
         if (currentUser.uidChats[k].chatUid==chatUid) {
           console.log("Se encuentra el chat");
           this.userAddCurrentData=currentUser.uidChats[k].customName;
+          this.userAdduidACtual.key=currentUser.uidChats[k].person;
+          // this.userAdduidACtual.name=this.getoneUsername(currentUser.uidChats[k].person);
+          // this.userAdduidACtual.name=currentUser.uidChats[k].customName;
+          this.getoneUsername(currentUser.uidChats[k].person);
+          console.log("uid actual");
+          console.log(this.userAdduidACtual.key);
         }
 
 
         }
       
     }
+
+  getoneUsername(uid){
+    console.log("Traer un suariooooooo");
+    let nombre:string ;
+    let itemRef1 = this.db.object('users/'+uid+'/name');
+    let subscription = itemRef1.snapshotChanges().subscribe((action: any) => {
+         console.log("nameeeeeeeee");
+         console.log(action.payload.val());
+         this.userAdduidACtual.name = action.payload.val()
+        //  subscription.unsubscribe();
+          // return nombre;
+         
+         
+    });
+    // return nombre;
+  }
+
   getListUsers(currentUser){
     this.usuarios= [];
     let itemRef1 = this.db.object('users');

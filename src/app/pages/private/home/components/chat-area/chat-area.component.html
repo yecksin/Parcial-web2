@@ -16,7 +16,7 @@
 </div>
 <div class="chat">
     <div class="botones-Add-bloq" *ngIf="_users.chatUid">
-        <button mat-raised-button color="primary" (click)="_users.agregarUsuario(_users.userAddCurrentData,_auth.currentUser)">Agregar</button>
+        <button mat-raised-button color="primary" (click)="_users.setCustomNAme(_users.userAdduidACtual,_auth.currentUser)">Agregar</button>
         <button style="margin-left: 10px;" disabled mat-raised-button color="primary">bloquear</button>
     </div>
     <a href="#finChat" class="float_bt_arrow" *ngIf="_users.chatUid">
