@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="inboxChat">
-            <app-inbox-chat *ngFor="let user of _users.chats|filtroUsuarioChat:textoBuscar; let i = index" (click)="onSelectInbox(user.chatUid)" 
+            <app-inbox-chat *ngFor="let user of _users.chats|filtroUsuarioChat:textoBuscar; let i = index" (click)="onSelectInbox(user.chatUid,authService.currentUser)" 
             profilePic="/assets/img/ppRightBar.png" 
             [name]="user.customName" 
             msgTime="11:13" 

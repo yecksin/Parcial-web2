@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UsuariosService {
+  userAddCurrentData='';
   usuarios= [];
   chats=[];
   chatUid='';
@@ -15,7 +16,22 @@ export class UsuariosService {
     private router: Router,
     private db: AngularFireDatabase
   ) { }
+    getUserData(chatUid,currentUser){
+      console.log("Get user data");
 
+      // console.log(currentUser);
+      for (let k  in currentUser.uidChats) {
+        // console.log(currentUser.uidChats[k]);
+        console.log(currentUser.uidChats[k].chatUid+'   '+ chatUid);
+        if (currentUser.uidChats[k].chatUid==chatUid) {
+          console.log("Se encuentra el chat");
+          this.userAddCurrentData=currentUser.uidChats[k].customName;
+        }
+
+
+        }
+      
+    }
   getListUsers(currentUser){
     this.usuarios= [];
     let itemRef1 = this.db.object('users');

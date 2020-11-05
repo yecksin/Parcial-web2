@@ -66,10 +66,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSelectInbox(chatUid) {
+  onSelectInbox(chatUid,usuarioActual) {
+    console.log(usuarioActual);
     console.log(chatUid);
     this._users.chatUid = chatUid;
     console.log(this._users.chats);
+    this._users.getUserData(chatUid,usuarioActual);
     // this.currentChat.title = this.chats[index].title;
     //   this.currentChat.icon = this.chats[index].icon;
     //   this.currentChat.msgs = this.chats[index].msgs;
