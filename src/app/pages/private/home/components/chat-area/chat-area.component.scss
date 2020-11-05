@@ -66,6 +66,7 @@ $titleFont: sfProTextMedium;
     }
 }
 .chat {
+    position: relative;
     width: 100%;
     height: calc(100% - 133px);
     background: #E5DDD5;
@@ -150,8 +151,17 @@ $titleFont: sfProTextMedium;
 
 .float_bt_arrow{
     z-index: 100;
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     margin: 90px 10px;
+}
+
+.botones-Add-bloq{
+    z-index: 100;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    margin: 10px 10px;
 }

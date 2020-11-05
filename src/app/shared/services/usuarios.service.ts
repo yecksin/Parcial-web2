@@ -36,8 +36,57 @@ export class UsuariosService {
     });
   }
 
-  agregarUsuario(){
-    console.log("agregar usuario");
+  setCustomNAme(userAdd,currentUser){
+    console.log(userAdd);
+console.log(currentUser.uidChats);
+for (let k  in currentUser.uidChats) {
+console.log(currentUser.uidChats[k]);
+if (currentUser.uidChats[k].person ==userAdd.key) {
+  console.log("Tienes el chat sin nombre");
+  this.db.database
+  .ref("users/" + currentUser.uid+'/uidChats/'+k)
+  .update({
+    customName: userAdd.name
+  })
+  .then(() => {});
+}
+  }
+
+  }
+
+  agregarUsuario(userAdd,currentUser){
+    let yaCreado=false;
+    // console.log(this.chats);
+    this.chats.forEach(resp=>{
+      //console.log(resp.person+' ' +userAdd.key);
+      if (resp.person == userAdd.key) {
+        console.log("hay uno igual");
+        yaCreado=true;
+      }
+    // console.log(resp.person);
+    })
+    if (yaCreado) {
+      this.setCustomNAme(userAdd,currentUser);
+      console.log("no se crea el chat");
+      
+    }else{
+          // console.log("mi uid ",currentUser.uid);
+    console.log(userAdd);
+    this.db.database.ref('chats').push({
+      titulo: {
+        msg:'Chat Creado'
+      },
+     
+    }).then(resp => {
+      
+      console.log(resp['path']['pieces_'][1]);
+      
+      this.pushChatUid(currentUser,userAdd,resp['path']['pieces_'][1]);
+    }).catch(e => {
+      console.log("Hubo un error");
+      console.log(e);
+    });
+    }
   }
 
 

@@ -15,7 +15,11 @@
     </div>
 </div>
 <div class="chat">
-    <a href="#finChat" class="float_bt_arrow">
+    <div class="botones-Add-bloq" *ngIf="_users.chatUid">
+        <button mat-raised-button color="primary">Agregar</button>
+        <button style="margin-left: 10px;" disabled mat-raised-button color="primary">bloquear</button>
+    </div>
+    <a href="#finChat" class="float_bt_arrow" *ngIf="_users.chatUid">
         <button mat-mini-fab color="primary" aria-label="Example icon button with a filter list icon">
             <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
